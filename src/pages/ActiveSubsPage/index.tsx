@@ -1,5 +1,4 @@
 import styles from './styles.module.css';
-import { useEffect, useState } from 'react';
 import Navbar from '../../components/Navbar/index';
 
 export default function ActiveSubsPage() {
