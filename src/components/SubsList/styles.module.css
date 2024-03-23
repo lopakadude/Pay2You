@@ -1,0 +1,112 @@
+.subsList {
+  list-style: none;
+  font-size: 17px;
+  padding: 0;
+  margin: 20px 0 0 0;
+  gap: 16px;
+}
+
+.subsList_type_flex {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.subsList__item {
+  background-color: #fff;
+  border-radius: 16px;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  overflow: hidden;
+  position: relative;
+  display: grid;
+}
+
+.subsList__item_type_flex {
+  width: 343px;
+  height: 94px;
+  padding: 12px 16px;
+  justify-content: space-between;
+  grid-template-columns: 142px 95px;
+  grid-template-rows: 30px 20px 20px;
+}
+
+.subsList__item_type_grid {
+  width: 164px;
+  height: 164px;
+  padding: 16px;
+  justify-content: start;
+}
+
+.subList__itemHeader {
+  font-size: 20px;
+  line-height: 30px;
+  font-weight: 500;
+  padding: 0;
+  margin: 0;
+  color: var(--light-type-high);
+  grid-column: 1;
+  grid-row: 1;
+}
+
+.subList__itemDescription {
+  padding: 0;
+  margin: 0;
+  max-width: 107px;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20px;
+  grid-column: 1;
+  grid-row: 2;
+}
+
+.subList__itemDescription_color_primary {
+  color: var(--light-type-high);
+}
+
+.subList__itemDescription_color_secondary {
+  color: var(--light-type-medium);
+}
+
+.subList__itemDate {
+  color: var(--light-type-medium);
+  padding: 0;
+  margin: 0;
+  grid-column: 1;
+  grid-row: 3;
+}
+
+.subList__itemCost {
+  font-size: 20px;
+  line-height: 30px;
+  font-weight: 500;
+  padding: 0;
+  margin: 0;
+  color: var(--light-type-high);
+}
+
+.subList__itemDuration {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+  color: var(--light-type-medium);
+}
+
+.subList__logo {
+  width: 80px;
+  height: 80px;
+  object-fit: contain;
+  position: absolute;
+}
+
+.subList__logo_type_flex {
+  top: 41px;
+  right: 7px;
+}
+
+.subList__logo_type_grid {
+  top: 55px;
+  left: 106px;
+}

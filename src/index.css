@@ -19,6 +19,7 @@
   -moz-osx-font-smoothing: grayscale;
 
   --light-neutrals-200: #F1F5F9;
+  --light-neutrals-300: #94A3B8;
   --light-type-high: #070A13;
   --light-primary-600: #7445FF;
   --light-type-medium: #64748B;
@@ -29,6 +30,6 @@
   --background-popup: #00000066;
   --dark-primary-800: #6D40C8;
   --Gradient-1700: #C7B5FF;
-
---max-desktop-width: 375px
+  --background: #F8FAFC
+  --max-desktop-width: 375px
 }

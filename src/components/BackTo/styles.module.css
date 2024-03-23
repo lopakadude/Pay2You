@@ -1,5 +1,5 @@
 .backTo {
-  background-color: #fff;
+  background-color: var(--light-neutrals-200);
   width: 343px;
   padding: 12px 0px 12px;
   box-sizing: border-box;

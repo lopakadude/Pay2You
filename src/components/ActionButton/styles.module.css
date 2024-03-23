@@ -1,0 +1,39 @@
+.actionButton {
+  color: var(--light-primary-700);
+  border: none;
+  background-color: var(--light-primary-100);
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-family: Manrope;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 24px;
+  transition: all 0.3s ease;
+}
+
+.actionButton:active {
+  background-color: var(--light-primary-600);
+  color: #fff;
+  transition: all 0.3s ease;
+}
+
+.actionButton_size_s {
+  padding: 4px 16px;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  border-radius: 6px;
+  border: 1px solid var(--Gradient-1700);
+  background-color: transparent;
+}
+
+.actionButton_size_m {
+  padding: 6px 16px;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 20px;
+  border-radius: 6px;
+  background-color: var(--light-primary-100);
+  border: none;
+}
