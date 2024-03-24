@@ -12,9 +12,9 @@ export default function ActiveSubsPage() {
       <h1 className={styles.activeSubsPage__header}>Активные подписки</h1>
       <ActionButton children='сортировать по дате списания' size='s' />
       <SubsList 
-      type='grid'
+      type='flex'
       data={activeSubsArray}
-      colorDescription='secondary'/>
+      colorDescription='primary'/>
     </section>
   )
 }

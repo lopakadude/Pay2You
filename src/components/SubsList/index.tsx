@@ -4,10 +4,12 @@ export default function SubsList({
   data,
   type,
   colorDescription,
+  colorSсheme,
 }: {
   data: CardType[];
   type: string;
-  colorDescription: string;
+  colorDescription?: string;
+  colorSсheme?: string;
 }) {
   return (
     <ul
@@ -22,25 +24,38 @@ export default function SubsList({
             type === 'grid' ? `${styles.subsList__item_type_grid}` : ''
           } ${type === 'flex' ? `${styles.subsList__item_type_flex}` : ''}`}
         >
-          <h2 className={styles.subList__itemHeader}>{sub.name}</h2>
-          <p
-            className={`${styles.subList__itemDescription} ${
-              colorDescription === 'primary'
-                ? `${styles.subList__itemDescription_color_primary}`
-                : ''
-            } ${
-              colorDescription === 'secondary'
-                ? `${styles.subList__itemDescription_color_secondary}`
+          <h2
+            className={`${styles.subList__itemHeader} ${
+              colorSсheme === 'none-active'
+                ? `${styles.subList__itemHeader_color_noneActive}`
                 : ''
             }`}
           >
-            {sub.description}
-          </p>
-          {type === 'flex' && (
+            {sub.name}
+          </h2>
+          {colorSсheme !== 'none-active' && (
+            <p
+              className={`${styles.subList__itemDescription} ${
+                colorDescription === 'primary'
+                  ? `${styles.subList__itemDescription_color_primary}`
+                  : ''
+              } ${
+                colorDescription === 'secondary'
+                  ? `${styles.subList__itemDescription_color_secondary}`
+                  : ''
+              }`}
+            >
+              {sub.description}
+            </p>
+          )}
+          {type === 'flex' && colorSсheme !== 'none-active' && (
             <p className={styles.subList__itemDate}>до {sub.date}</p>
           )}
+          {type === 'flex' && colorSсheme === 'none-active' && (
+            <p className={styles.subList__itemDate}>истекла {sub.date}</p>
+          )}
           {type === 'flex' && (
-            <p className={styles.subList__itemCost}>
+            <p className={`${styles.subList__itemCost} ${colorSсheme === 'none-active' ? `${styles.subList__itemCost_color_noneActive}` : ''}`}>
               {sub.cost} &#x20bd;{' '}
               <span className={styles.subList__itemDuration}>
                 {' '}
@@ -53,13 +68,13 @@ export default function SubsList({
           )}
           {type === 'grid' && (
             <div className={styles.subList__itemCAshBackContainer}>
-              <p className={styles.subList__itemCAshBack}>
+              <p className={styles.subList__itemCashBack}>
                 Кешбэк {sub.cashBack}%
               </p>
             </div>
           )}
           <img
-            src={sub.logo}
+            src={colorSсheme !== 'none-active' ? sub.logo : sub.logo_inactive}
             alt={sub.name}
             className={`${styles.subList__logo} ${
               type === 'grid' ? `${styles.subList__logo_type_grid}` : ''

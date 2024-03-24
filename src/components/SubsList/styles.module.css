@@ -3,7 +3,6 @@
   font-size: 17px;
   padding: 0;
   margin: 20px 0 0 0;
-  gap: 16px;
 }
 
 .subsList_type_flex {
@@ -11,6 +10,14 @@
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
+  gap: 16px;
+}
+
+.subsList_type_grid {
+  display: grid;
+  gap: 16px;
+  grid-template-columns: 164px 164px;
+  grid-template-rows: auto;
 }
 
 .subsList__item {
@@ -29,7 +36,7 @@
   height: 94px;
   padding: 12px 16px;
   justify-content: space-between;
-  grid-template-columns: 142px 95px;
+  grid-template-columns: 1fr 95px;
   grid-template-rows: 30px 20px 20px;
 }
 
@@ -51,10 +58,13 @@
   grid-row: 1;
 }
 
+.subList__itemHeader_color_noneActive {
+  color: var(--light-type-medium);
+}
+
 .subList__itemDescription {
   padding: 0;
   margin: 0;
-  max-width: 107px;
   font-size: 14px;
   font-weight: 500;
   line-height: 20px;
@@ -68,6 +78,7 @@
 
 .subList__itemDescription_color_secondary {
   color: var(--light-type-medium);
+  max-width: 107px;
 }
 
 .subList__itemDate {
@@ -85,6 +96,10 @@
   padding: 0;
   margin: 0;
   color: var(--light-type-high);
+}
+
+.subList__itemCost_color_noneActive {
+  color: var(--light-type-medium);
 }
 
 .subList__itemDuration {
@@ -109,4 +124,24 @@
 .subList__logo_type_grid {
   top: 55px;
   left: 106px;
+}
+
+.subList__itemCAshBackContainer {
+  height: 24px;
+  padding: 2px 8px;
+  margin-top: 8px;
+  box-sizing: border-box;
+  z-index: 2;
+  border: 1px solid var(--dark-primary-800);
+  border-radius: 12px;
+  background-color: #fff;
+}
+
+.subList__itemCashBack {
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20px;
+  padding: 0;
+  margin: 0;
+  color: var(--dark-primary-800);
 }

@@ -3,17 +3,20 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 100vh;
   background-color: var(--light-neutrals-300);
 }
 
 .layout__main {
-  height: 720px;
+  min-height: calc(100vh - 36px - 34px);
   padding-left: 16px;
   padding-right: 16px;
+  margin-top: 36px;
   box-sizing: border-box;
   position: relative;
   width: var(--max-desktop-width);
   background-color: var(--light-neutrals-200);
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }

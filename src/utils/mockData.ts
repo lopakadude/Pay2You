@@ -6,6 +6,8 @@ export const activeSubsArray = [
     date: '15.04.2024',
     cost: '200',
     logo: 'https://propostuplenie.ru/images/navigator-data-800x800_8/article/ivi_1000x523-jpg',
+    logo_inactive:
+      'https://www.redmineup.com/cms/assets/thumbnail/43635/122/iviru.png?token=5146aba7ce5c977aaf82c6344177a7f5fdcbd2b17580de4cb5fb4f8ee17de0f9',
     duration: 'мес',
     cashBack: '10',
   },
@@ -16,6 +18,8 @@ export const activeSubsArray = [
     date: '15.04.2024',
     cost: '200',
     logo: 'https://propostuplenie.ru/images/navigator-data-800x800_8/article/ivi_1000x523-jpg',
+    logo_inactive:
+      'https://www.redmineup.com/cms/assets/thumbnail/43635/122/iviru.png?token=5146aba7ce5c977aaf82c6344177a7f5fdcbd2b17580de4cb5fb4f8ee17de0f9',
     duration: 'мес',
     cashBack: '10',
   },
@@ -26,6 +30,8 @@ export const activeSubsArray = [
     date: '15.04.2024',
     cost: '200',
     logo: 'https://propostuplenie.ru/images/navigator-data-800x800_8/article/ivi_1000x523-jpg',
+    logo_inactive:
+      'https://www.redmineup.com/cms/assets/thumbnail/43635/122/iviru.png?token=5146aba7ce5c977aaf82c6344177a7f5fdcbd2b17580de4cb5fb4f8ee17de0f9',
     duration: 'мес',
     cashBack: '10',
   },
@@ -36,6 +42,8 @@ export const activeSubsArray = [
     date: '15.04.2024',
     cost: '200',
     logo: 'https://propostuplenie.ru/images/navigator-data-800x800_8/article/ivi_1000x523-jpg',
+    logo_inactive:
+      'https://www.redmineup.com/cms/assets/thumbnail/43635/122/iviru.png?token=5146aba7ce5c977aaf82c6344177a7f5fdcbd2b17580de4cb5fb4f8ee17de0f9',
     duration: 'мес',
     cashBack: '10',
   },
@@ -46,6 +54,8 @@ export const activeSubsArray = [
     date: '15.04.2024',
     cost: '200',
     logo: 'https://propostuplenie.ru/images/navigator-data-800x800_8/article/ivi_1000x523-jpg',
+    logo_inactive:
+      'https://www.redmineup.com/cms/assets/thumbnail/43635/122/iviru.png?token=5146aba7ce5c977aaf82c6344177a7f5fdcbd2b17580de4cb5fb4f8ee17de0f9',
     duration: 'мес',
     cashBack: '10',
   },
@@ -56,6 +66,8 @@ export const activeSubsArray = [
     date: '15.04.2024',
     cost: '200',
     logo: 'https://propostuplenie.ru/images/navigator-data-800x800_8/article/ivi_1000x523-jpg',
+    logo_inactive:
+      'https://www.redmineup.com/cms/assets/thumbnail/43635/122/iviru.png?token=5146aba7ce5c977aaf82c6344177a7f5fdcbd2b17580de4cb5fb4f8ee17de0f9',
     duration: 'мес',
     cashBack: '10',
   },
@@ -66,6 +78,8 @@ export const activeSubsArray = [
     date: '15.04.2024',
     cost: '200',
     logo: 'https://propostuplenie.ru/images/navigator-data-800x800_8/article/ivi_1000x523-jpg',
+    logo_inactive:
+      'https://www.redmineup.com/cms/assets/thumbnail/43635/122/iviru.png?token=5146aba7ce5c977aaf82c6344177a7f5fdcbd2b17580de4cb5fb4f8ee17de0f9',
     duration: 'мес',
     cashBack: '10',
   },
@@ -76,6 +90,8 @@ export const activeSubsArray = [
     date: '15.04.2024',
     cost: '200',
     logo: 'https://propostuplenie.ru/images/navigator-data-800x800_8/article/ivi_1000x523-jpg',
+    logo_inactive:
+      'https://www.redmineup.com/cms/assets/thumbnail/43635/122/iviru.png?token=5146aba7ce5c977aaf82c6344177a7f5fdcbd2b17580de4cb5fb4f8ee17de0f9',
     duration: 'мес',
     cashBack: '10',
   },
