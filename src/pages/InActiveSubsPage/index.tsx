@@ -8,7 +8,7 @@ export default function InActiveSubsPage() {
   return (
     <section className={styles.inActiveSubsPage}>
       <Navbar />
-      <h1 className={styles.activeSubsPage__header}>Неактивные подписки</h1>
+      <h1 className={styles.inActiveSubsPage__header}>Неактивные подписки</h1>
       <SubsList type="flex" colorSсheme="none-active" data={activeSubsArray}  />
     </section>
   );
