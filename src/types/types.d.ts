@@ -4,8 +4,8 @@ type CardType = {
   description: string;
   date: string;
   cost: string;
-  logo: string;
-  logo_inactive: string;
+  logo?: string;
+  logo_inactive?: string;
   duration: string;
   cashBack?: string;
 };

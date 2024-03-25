@@ -1,9 +1,11 @@
 .availableSubsPage {
   width: 343px;
+  padding-left: 16px;
+  padding-right: 16px;
 }
 
 .availableSubsPage__header {
-  padding: 0;
+  padding: 56px 0 0 0;
   margin: 0 0px 20px 0px;
   font-size: 20px;
   line-height: 30px;

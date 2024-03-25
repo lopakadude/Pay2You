@@ -20,17 +20,19 @@ const router = createBrowserRouter(
   createRoutesFromElements(
     <>
       <Route path="/" element={<Layout />} errorElement={<NotFoundPage />}>
-        <Route path="active-subs" element={<ActiveSubsPage />} />
-        <Route path="inactive-subs" element={<InActiveSubsPage />} />
-        <Route path="available-subs" element={<AvailableSubsPage />} />
-        <Route path="all-subs" element={<AllSubsPage />} />
-        <Route path="wastes" element={<WastesPage />} />
-      </Route>
-    </>,
+        {/* <Route element={<ProtectedRoute />}> */}
+          <Route path="active-subs" element={<ActiveSubsPage />} />
+          <Route path="inactive-subs" element={<InActiveSubsPage />} />
+          <Route path="available-subs" element={<AvailableSubsPage />} />
+          <Route path="all-subs" element={<AllSubsPage />} />
+          <Route path="wastes" element={<WastesPage />} />
+        </Route>
+      {/* </Route> */}
+    </>
   ),
   {
     basename: '/',
-  },
+  }
 );
 
 export default router;

@@ -1,5 +1,5 @@
 import BackTo from '../../components/BackTo';
-import SearchButton from '../SearchButton/SearchButton';
+import SearchButton from '../SearchButton';
 import styles from './styles.module.css';
 
 export default function Navbar() {

@@ -16,14 +16,14 @@
 .subsList_type_grid {
   display: grid;
   gap: 16px;
-  grid-template-columns: 164px 164px;
+  grid-template-columns: 163.5px 163.5px;
   grid-template-rows: auto;
 }
 
 .subsList__item {
   background-color: #fff;
   border-radius: 16px;
-  padding: 0;
+  padding: 0 0 0 16px;
   margin: 0;
   box-sizing: border-box;
   overflow: hidden;
@@ -114,6 +114,10 @@
   height: 80px;
   object-fit: contain;
   position: absolute;
+}
+
+.subList__logo_color_noneActive {
+  filter: saturate(0)
 }
 
 .subList__logo_type_flex {

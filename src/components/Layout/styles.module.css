@@ -8,8 +8,6 @@
 
 .layout__main {
   min-height: calc(100vh - 36px - 34px);
-  padding-left: 16px;
-  padding-right: 16px;
   margin-top: 36px;
   box-sizing: border-box;
   position: relative;

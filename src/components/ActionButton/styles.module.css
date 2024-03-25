@@ -1,5 +1,6 @@
 .actionButton {
   color: var(--light-primary-700);
+  width: 100%;
   border: none;
   background-color: var(--light-primary-100);
   padding: 10px 20px;
@@ -20,6 +21,7 @@
 
 .actionButton_size_s {
   padding: 4px 16px;
+  margin-left: 16px;
   font-weight: 400;
   font-size: 16px;
   line-height: 24px;
@@ -36,4 +38,12 @@
   border-radius: 6px;
   background-color: var(--light-primary-100);
   border: none;
+}
+
+.actionButton_size_xs {
+  padding: 4px 8px;
+}
+
+.actionButton_active {
+  background-color: var(--light-primary-600);
 }

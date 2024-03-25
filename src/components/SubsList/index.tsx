@@ -1,25 +1,35 @@
 import styles from './styles.module.css';
+import { useActions } from '../../hooks/actions';
 
 export default function SubsList({
   data,
   type,
   colorDescription,
   colorSсheme,
+  setSelectedCard,
 }: {
   data: CardType[];
   type: string;
   colorDescription?: string;
   colorSсheme?: string;
+  setSelectedCard: (id: string) => void;
 }) {
+  const { openModal } = useActions();
+  const handleCardClick = (id: string) => {
+    setSelectedCard(id);
+    openModal();
+  };
+
   return (
     <ul
       className={`${styles.subsList} ${
         type === 'flex' ? `${styles.subsList_type_flex}` : ''
       } ${type === 'grid' ? `${styles.subsList_type_grid}` : ''}`}
     >
-      {data.map((sub, i) => (
+      {data.map((sub) => (
         <li
-          key={i}
+          key={sub.id}
+          onClick={() => handleCardClick(sub.id)}
           className={`${styles.subsList__item} ${
             type === 'grid' ? `${styles.subsList__item_type_grid}` : ''
           } ${type === 'flex' ? `${styles.subsList__item_type_flex}` : ''}`}
@@ -55,7 +65,13 @@ export default function SubsList({
             <p className={styles.subList__itemDate}>истекла {sub.date}</p>
           )}
           {type === 'flex' && (
-            <p className={`${styles.subList__itemCost} ${colorSсheme === 'none-active' ? `${styles.subList__itemCost_color_noneActive}` : ''}`}>
+            <p
+              className={`${styles.subList__itemCost} ${
+                colorSсheme === 'none-active'
+                  ? `${styles.subList__itemCost_color_noneActive}`
+                  : ''
+              }`}
+            >
               {sub.cost} &#x20bd;{' '}
               <span className={styles.subList__itemDuration}>
                 {' '}
@@ -74,11 +90,15 @@ export default function SubsList({
             </div>
           )}
           <img
-            src={colorSсheme !== 'none-active' ? sub.logo : sub.logo_inactive}
+            src={sub.logo}
             alt={sub.name}
             className={`${styles.subList__logo} ${
               type === 'grid' ? `${styles.subList__logo_type_grid}` : ''
-            } ${type === 'flex' ? `${styles.subList__logo_type_flex}` : ''}`}
+            } ${type === 'flex' ? `${styles.subList__logo_type_flex}` : ''} ${
+              colorSсheme === 'none-active'
+                ? `${styles.subList__logo_color_noneActive}`
+                : ''
+            }`}
           />
         </li>
       ))}

@@ -1,4 +1,11 @@
 .navbar {
   display: flex;
   margin-bottom: 12px;
+  position: fixed;
+  top: 36px;
+  width: 375px;
+  padding-left: 16px;
+  padding-right: 16px;
+  box-sizing: border-box;
+  z-index: 3;
 }

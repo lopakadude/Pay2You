@@ -4,7 +4,6 @@ import ActionButton from '../../components/ActionButton/index';
 import { useNavigate } from 'react-router-dom';
 
 export default function AllSubsPage() {
-
   const navigate = useNavigate();
 
   return (
@@ -12,13 +11,13 @@ export default function AllSubsPage() {
       <Navbar />
       <h1 className={styles.allSubsPage__header}>Подписки партнёров</h1>
       <div onClick={() => navigate('/active-subs')}>
-        <ActionButton children="активные подписки" />
+        <ActionButton title="активные подписки" />
       </div>
       <div onClick={() => navigate('/inactive-subs')}>
-        <ActionButton children="неактивные подписки" />
+        <ActionButton title="неактивные подписки" />
       </div>
       <div onClick={() => navigate('/available-subs')}>
-        <ActionButton children="доступные подписки" />
+        <ActionButton title="доступные подписки" />
       </div>
     </section>
   );

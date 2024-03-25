@@ -4,4 +4,5 @@
   bottom: 0;
   left: 0;
   flex: 0 0 36px;
+  z-index: 3;
 }
