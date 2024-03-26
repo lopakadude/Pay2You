@@ -4,7 +4,9 @@ import { authReducer } from './pay2u/auth.slice';
 import { popupReducer } from './pay2u/popup.slice';
 import { modalReducer } from './pay2u/modal.slice';
 import { confirmReducer } from './pay2u/confirm.slice';
-
+import { userReducer } from './pay2u/user.slice';
+import { currentCardReducer } from './pay2u/myCard.slice';
+import { coversReducer } from './pay2u/covers.slice';
 
 export const store = configureStore({
   reducer: {
@@ -13,6 +15,9 @@ export const store = configureStore({
     popup: popupReducer,
     modal: modalReducer,
     confirm: confirmReducer,
+    user: userReducer,
+    currentCard: currentCardReducer,
+    covers: coversReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(api.middleware),

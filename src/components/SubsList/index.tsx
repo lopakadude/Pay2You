@@ -1,5 +1,6 @@
 import styles from './styles.module.css';
 import { useActions } from '../../hooks/actions';
+import { formatDate } from '../../utils/formatDate';
 
 export default function SubsList({
   data,
@@ -8,17 +9,25 @@ export default function SubsList({
   colorSсheme,
   setSelectedCard,
 }: {
-  data: CardType[];
+  data: MyCardType[];
   type: string;
   colorDescription?: string;
   colorSсheme?: string;
-  setSelectedCard: (id: string) => void;
+  setSelectedCard: (id: number) => void;
 }) {
   const { openModal } = useActions();
-  const handleCardClick = (id: string) => {
+  const handleCardClick = (id: number) => {
     setSelectedCard(id);
     openModal();
   };
+
+  const definePeriodTitle = (sub: MyCardType) => {
+    if (sub.period === 'monthly') {
+      return 'мес';
+    } else if (sub.period === 'annual') {
+      return 'год';
+    }
+  }
 
   return (
     <ul
@@ -59,10 +68,14 @@ export default function SubsList({
             </p>
           )}
           {type === 'flex' && colorSсheme !== 'none-active' && (
-            <p className={styles.subList__itemDate}>до {sub.date}</p>
+            <p className={styles.subList__itemDate}>
+              до {formatDate(sub.end_date, '2-digit', false)}
+            </p>
           )}
           {type === 'flex' && colorSсheme === 'none-active' && (
-            <p className={styles.subList__itemDate}>истекла {sub.date}</p>
+            <p className={styles.subList__itemDate}>
+              истекла {formatDate(sub.end_date, '2-digit', false)}
+            </p>
           )}
           {type === 'flex' && (
             <p
@@ -72,15 +85,15 @@ export default function SubsList({
                   : ''
               }`}
             >
-              {sub.cost} &#x20bd;{' '}
+              {sub.price} &#x20bd;{' '}
               <span className={styles.subList__itemDuration}>
                 {' '}
-                в {sub.duration}
+                в {definePeriodTitle(sub)}
               </span>
             </p>
           )}
           {type === 'grid' && (
-            <p className={styles.subList__itemCost}>от {sub.cost} &#x20bd;</p>
+            <p className={styles.subList__itemCost}>от {sub.price} &#x20bd;</p>
           )}
           {type === 'grid' && (
             <div className={styles.subList__itemCAshBackContainer}>
@@ -90,7 +103,7 @@ export default function SubsList({
             </div>
           )}
           <img
-            src={sub.logo}
+            src={`https://pay2u.ddns.net/${sub.logo_link}`}
             alt={sub.name}
             className={`${styles.subList__logo} ${
               type === 'grid' ? `${styles.subList__logo_type_grid}` : ''

@@ -1,28 +1,35 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Navbar from '../../components/Navbar';
 import SubsList from '../../components/SubsList';
-import { availableSubsArray } from '../../utils/mockData';
-import styles from './styles.module.css';
 import { useAppSelector } from '../../hooks/redux';
-import ActiveCardInfo from '../../components/ActiveCardInfo';
-import Modal from '../../components/Modal';
+import { useGetCoversQuery } from '../../store/pay2u/pay2u.api';
+import styles from './styles.module.css';
+import { useActions } from '../../hooks/actions';
 
 export default function AvailableSubsPage() {
-    const [selectedCard, setSelectedCard] = useState('');
-      const isModalOpen = useAppSelector((state) => state.modal.isModalOpened);
+  const [selectedCard, setSelectedCard] = useState(0);
+  const { data: covers } = useGetCoversQuery();
+
+  console.log(covers);
+  const { setCovers } = useActions();
+
+  useEffect(() => {
+    setCovers(covers);
+  });
+
+
+  const currentCovers = useAppSelector((state) => state.covers.covers);
+
   return (
     <section className={styles.availableSubsPage}>
       <Navbar />
       <h1 className={styles.availableSubsPage__header}>Каталог</h1>
       <SubsList
         type="grid"
-        data={availableSubsArray}
+        data={currentCovers ? currentCovers : []}
         colorDescription="secondary"
         setSelectedCard={setSelectedCard}
       />
-      {isModalOpen && (
-        <Modal content={<ActiveCardInfo cardId={selectedCard} />} />
-      )}
     </section>
   );
 }

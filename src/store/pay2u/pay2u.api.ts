@@ -6,13 +6,13 @@ interface LoginRequest {
 }
 
 interface LoginResponse {
-  auth_token: string;
+  token: string;
 }
 
 export const api = createApi({
   reducerPath: 'api',
   baseQuery: fetchBaseQuery({
-    baseUrl: 'http://pay2u.ddns.net:8001/api',
+    baseUrl: 'https://pay2u.ddns.net/api/',
     prepareHeaders: (headers) => {
       const authToken = localStorage.getItem('authToken');
       if (authToken) {
@@ -21,14 +21,7 @@ export const api = createApi({
       return headers;
     },
   }),
-  tagTypes: [
-    'Comments',
-    'Ambassadors',
-    'Ambassador',
-    'Auth',
-    'Merch',
-    'AllReports',
-  ],
+  tagTypes: ['Auth', 'Subscriptions', 'Merch', 'AllReports'],
   endpoints: (build) => ({
     login: build.mutation<LoginResponse, LoginRequest>({
       query: (credentials) => ({
@@ -38,7 +31,23 @@ export const api = createApi({
       }),
       invalidatesTags: ['Auth'],
     }),
+    getUser: build.query<UserType, void>({
+      query: () => ({
+        url: 'my/',
+      }),
+    }),
+    getMyCardInfo: build.query<MyCardType, { id: number }>({
+      query: ({ id }) => ({
+        url: `v1/subscriptions/${id}/`,
+      }),
+      providesTags: ['Subscriptions'],
+    }),
+    getCovers: build.query<MyCardType[], void>({
+      query: () => ({
+        url: 'v1/covers/',
+      }),
+    }),
   }),
 });
 
-export const { useLoginMutation } = api;
+export const { useLoginMutation, useGetUserQuery, useGetMyCardInfoQuery, useGetCoversQuery } = api;

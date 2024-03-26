@@ -5,36 +5,25 @@ import { useActions } from '../../hooks/actions';
 import { useGetMyCardInfoQuery } from '../../store/pay2u/pay2u.api';
 import { useAppSelector } from '../../hooks/redux';
 import { formatDate } from '../../utils/formatDate';
-import { useEffect } from 'react';
 
 export default function ActiveCardInfo({ cardId }: { cardId: number }) {
-  const { openConfirm, setCurrentCard } = useActions();
+  const { openConfirm } = useActions();
   const { data: myCard } = useGetMyCardInfoQuery({ id: cardId });
-  const user = useAppSelector((state) => state.user.currentUser);
-  const card = useAppSelector((state) => state.currentCard.currentCard);
-  // function copyText(text: string) {
-  //   navigator.clipboard
-  //     .writeText(text)
-  //     .then(() => console.log('ok'))
-  //     .catch(() => console.log('not ok'));
-  // }
-
-  useEffect(() => {
-    setCurrentCard(myCard);
-  });
+    const user = useAppSelector((state) => state.user.currentUser);
+  console.log(myCard)
 
   return (
     <section className={styles.activeCardInfo}>
       <div className={styles.activeCardInfo__header}>
         <img
-          src={`https://pay2u.ddns.net/${card.logo_link}`}
-          alt={card.name}
+          src={`https://pay2u.ddns.net/${myCard?.logo_link}`}
+          alt={myCard?.name}
           className={styles.activeCardInfo__logo}
         />
         <div className={styles.activeCardInfo__name}>
-          <h3 className={styles.activeCardInfo__title}>{card.name}</h3>
+          <h3 className={styles.activeCardInfo__title}>{myCard?.name}</h3>
           <p className={styles.activeCardInfo__description}>
-            {card.description}
+            {myCard?.description}
           </p>
         </div>
       </div>
@@ -44,7 +33,7 @@ export default function ActiveCardInfo({ cardId }: { cardId: number }) {
             Стоимость подписки
           </p>
           <p className={styles.activeCardInfo__itemValue}>
-            {card.monthly_price} &#x20bd;
+            {myCard?.monthly_price} &#x20bd;
           </p>
         </li>
         <li className={styles.activeCardInfo__listItem}>
@@ -52,7 +41,7 @@ export default function ActiveCardInfo({ cardId }: { cardId: number }) {
             Следующее списание
           </p>
           <p className={styles.activeCardInfo__itemValue}>
-            {formatDate(card.end_date, '2-digit', false)}
+            {myCard ? formatDate(myCard.end_date, '2-digit', false) : ''}
           </p>
         </li>
         <li className={styles.activeCardInfo__listItem}>
@@ -71,14 +60,11 @@ export default function ActiveCardInfo({ cardId }: { cardId: number }) {
         </li>
         <li className={styles.activeCardInfo__listItem}>
           <p className={styles.activeCardInfo__itemDescription}>Промокод</p>
-          <p className={styles.activeCardInfo__itemValue}>{card.promo}</p>
+          <p className={styles.activeCardInfo__itemValue}>{myCard?.promo}</p>
         </li>
       </ul>
       <a
-        href={card.service_link}
-        // onClick={() => {
-        //   copyText(card.promo);
-        // }}
+        href={myCard?.service_link}
         className={styles.activeCardInfo__siteLink}
       >
         Скопировать промокод и перейти на сайт

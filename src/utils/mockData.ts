@@ -201,7 +201,7 @@ export const mySubsArray = [
     description: 'Подписка на фильмы',
     date: '15.04.2024',
     cost: '200',
-    logo: 'https://propostuplenie.ru/images/navigator-data-800x800_8/article/ivi_1000x523-jpg',
+    logo: 'https://pay2u.ddns.net/api/images/navigator-data-800x800_8/article/ivi_1000x523-jpg',
     duration: 'мес',
     cashBack: '10',
     promo: 'rufnfi8vj',

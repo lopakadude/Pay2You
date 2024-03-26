@@ -1,19 +1,24 @@
 import Navbar from '../../components/Navbar';
 import styles from './styles.module.css';
-import { mySubsArray } from '../../utils/mockData';
 import SubsList from '../../components/SubsList';
 import { useState } from 'react';
-import ActiveCardInfo from '../../components/ActiveCardInfo';
+import InActiveCardInfo from '../../components/InActiveCardInfo';
 import Modal from '../../components/Modal';
 import { useAppSelector } from '../../hooks/redux';
+import { useGetUserQuery } from '../../store/pay2u/pay2u.api';
 
 export default function InActiveSubsPage() {
-    const [selectedCard, setSelectedCard] = useState('');
+  const [selectedCard, setSelectedCard] = useState(0);
+  const { data: user } = useGetUserQuery();
   const defineContent = () => {
-    return mySubsArray.filter((mySub) => mySub.is_active === false);
+    if (user) {
+      return user.subscriptions.filter((mySub) => mySub.is_active === false);
+    } else {
+      return [];
+    }
   };
 
-    const isModalOpen = useAppSelector((state) => state.modal.isModalOpened);
+  const isModalOpen = useAppSelector((state) => state.modal.isModalOpened);
 
   return (
     <section className={styles.inActiveSubsPage}>
@@ -26,7 +31,7 @@ export default function InActiveSubsPage() {
         setSelectedCard={setSelectedCard}
       />
       {isModalOpen && (
-        <Modal content={<ActiveCardInfo cardId={selectedCard} />} />
+        <Modal content={<InActiveCardInfo cardId={selectedCard} />} />
       )}
     </section>
   );
