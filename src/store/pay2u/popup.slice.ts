@@ -3,7 +3,6 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
   isPopupOpened: false,
-  contentType: '',
 };
 
 export const popupSlice = createSlice({
@@ -15,9 +14,6 @@ export const popupSlice = createSlice({
     },
     closePopup: state => {
       state.isPopupOpened = false;
-    },
-    setModalContentType: (state, action) => {
-      state.contentType = action.payload;
     },
   },
 });

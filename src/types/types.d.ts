@@ -13,7 +13,7 @@ type MyCardType = {
   monthly_price?: number;
   annual_price?: number;
   semi_annual_price?: number;
-  promo?: string;
+  promo: string;
 };
 
 type UserType = {

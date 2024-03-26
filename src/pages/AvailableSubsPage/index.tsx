@@ -23,13 +23,14 @@ export default function AvailableSubsPage() {
   return (
     <section className={styles.availableSubsPage}>
       <Navbar />
-      <h1 className={styles.availableSubsPage__header}>Каталог {selectedCard}</h1>
+      <h1 className={styles.availableSubsPage__header}>Каталог</h1>
       <SubsList
         type="grid"
         data={currentCovers ? currentCovers : []}
         colorDescription="secondary"
         setSelectedCard={setSelectedCard}
       />
+      <div>{selectedCard}</div>
     </section>
   );
 }

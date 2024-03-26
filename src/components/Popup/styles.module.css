@@ -1,13 +1,31 @@
 .popup {
   width: 375px;
-  height: 544px;
   box-sizing: border-box;
-  padding: 32px 16px 40px;
+  padding: 0px;
   background-color: var(--background-popup);
-  z-index: 5;
+  z-index: 6;
   display: none;
+  position: fixed;
+  top: 0;
 }
 
 .popup_active {
   display: block;
+}
+
+.popup__overlay {
+  width: 375px;
+  height: 100vh;
+}
+
+.popup__content {
+  position: absolute;
+  top: 23vh;
+  left: 24px;
+  width: 327px;
+  background-color: #fff;
+  border-radius: 16px;
+  padding: 24px;
+  box-sizing: border-box;
+  z-index: 7;
 }

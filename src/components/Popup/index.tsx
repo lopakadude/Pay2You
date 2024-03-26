@@ -13,11 +13,11 @@ export default function Popup({ content }: { content: JSX.Element }) {
   return (
     <div
       className={`${styles.popup} ${
-        isPopupOpened === true && `${styles.modal_active}`
+        isPopupOpened === true && `${styles.popup_active}`
       }`}
-      onClick={handleClosePopup}
     >
-      <div className={styles.modal__content}>{content}</div>
+      <div className={styles.popup__overlay} onClick={handleClosePopup}></div>
+      <div className={styles.popup__content}>{content}</div>
     </div>
   );
 }

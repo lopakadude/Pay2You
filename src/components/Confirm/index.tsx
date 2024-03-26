@@ -6,7 +6,7 @@ import { formatDate } from '../../utils/formatDate';
 
 export default function Confirm() {
 
-  const { closeConfirm, closeModal } = useActions();
+  const { closeConfirm, closeModal, openPopup } = useActions();
 
   const card = useAppSelector((state) => state.currentCard.currentCard);
 
@@ -14,7 +14,7 @@ export default function Confirm() {
     console.log('ok');
     closeModal();
     closeConfirm();
-    // сделать открытие попапа
+    openPopup();
   }
 
   console.log(card)
