@@ -1,7 +1,6 @@
 import { useAppSelector } from '../../hooks/redux';
 import { Outlet, Navigate } from 'react-router-dom';
 import { RootState } from '../../store';
-import NotFoundPage from '../../pages/NotFoundPage';
 
 const ProtectedRoute = () => {
   const isLoggedIn = useAppSelector(

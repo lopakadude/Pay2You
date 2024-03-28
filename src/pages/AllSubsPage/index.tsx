@@ -1,7 +1,7 @@
 import Navbar from '../../components/Navbar';
 import styles from './styles.module.css';
 import ActionButton from '../../components/ActionButton/index';
-import { Navigate, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useActions } from '../../hooks/actions';
 import { useEffect, useState } from 'react';
 import {
