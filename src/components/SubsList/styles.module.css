@@ -1,8 +1,9 @@
 .subsList {
   list-style: none;
   font-size: 17px;
+  width: 343px;
   padding: 0;
-  margin: 20px 0 0 0;
+  margin: 20px auto 0 auto;
 }
 
 .subsList_type_flex {

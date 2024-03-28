@@ -18,7 +18,7 @@ import Confirm from '../../components/Confirm';
 export default function AllSubsPage() {
   const navigate = useNavigate();
   const [triggerUser, { data: user }] = useLazyGetUserQuery();
-  const [triggerCovers, { data: covers }] = useLazyGetCoversQuery();
+  const [triggerCovers ] = useLazyGetCoversQuery();
   const { setCurrentUser } = useActions();
   const { setCovers } = useActions();
   const activeSubs = user?.subscriptions.filter(
@@ -31,6 +31,7 @@ export default function AllSubsPage() {
   const isConfirmOpen = useAppSelector(
     (state) => state.confirm.isConfirmOpened
   );
+  const currentCovers = useAppSelector((state) => state.covers.covers)
   const [selectedCard, setSelectedCard] = useState(0);
 
   useEffect(() => {
@@ -39,8 +40,10 @@ export default function AllSubsPage() {
       .then((user) => setCurrentUser(user));
     triggerCovers()
       .unwrap()
-      .then((covers) => setCovers(covers));
+      .then((covers) => setCovers(covers.results));
   }, []);
+
+console.log(currentCovers)
 
   return (
     <section className={styles.allSubsPage}>
@@ -71,11 +74,11 @@ export default function AllSubsPage() {
               Активные подписки: {activeSubs.length}
             </h2>
             <SubsList
-              data={activeSubs}
+              data={activeSubs.slice(0, 3)}
               type="flex"
               setSelectedCard={setSelectedCard}
             />
-            {activeSubs.length >= 3 && (
+            {activeSubs.length > 3 && (
               <div
                 className={styles.allSubsPage__buttonToSection}
                 onClick={() => navigate('/active-subs')}
@@ -90,7 +93,13 @@ export default function AllSubsPage() {
             <h2 className={styles.allSubsPage__subTitle}>
               Неактивные подписки: {inActiveSubs.length}
             </h2>
-            {inActiveSubs.length >= 3 && (
+            <SubsList
+              data={inActiveSubs.slice(0, 3)}
+              type="flex"
+              colorSсheme="none-active"
+              setSelectedCard={setSelectedCard}
+            />
+            {inActiveSubs.length > 3 && (
               <div
                 className={styles.allSubsPage__buttonToSection}
                 onClick={() => navigate('/inactive-subs')}
@@ -100,10 +109,15 @@ export default function AllSubsPage() {
             )}
           </div>
         )}
-        {covers && covers.length !== 0 && (
+        {currentCovers && currentCovers.length !== 0 && (
           <div>
             <h2 className={styles.allSubsPage__subTitle}>Каталог</h2>
-            {covers.length >= 2 && (
+            <SubsList
+              data={currentCovers.slice(0, 2)}
+              type="grid"
+              setSelectedCard={setSelectedCard}
+            />
+            {currentCovers.length > 2 && (
               <div
                 className={styles.allSubsPage__buttonToSection}
                 onClick={() => navigate('/available-subs')}

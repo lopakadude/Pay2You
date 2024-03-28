@@ -43,7 +43,7 @@ export const api = createApi({
       }),
       providesTags: ['Subscription'],
     }),
-    getCovers: build.query<MyCardType[], void>({
+    getCovers: build.query<{results: MyCardType[]}, void>({
       query: () => ({
         url: 'v1/covers/',
       }),
