@@ -6,7 +6,6 @@ import Modal from '../../components/Modal';
 import ActiveCardInfo from '../../components/ActiveCardInfo';
 import { useAppSelector } from '../../hooks/redux';
 import Confirm from '../../components/Confirm';
-import { useGetUserQuery } from '../../store/pay2u/pay2u.api';
 import Popup from '../../components/Popup';
 import ProlongationCancel from '../../components/ProlongationCancel';
 
@@ -14,11 +13,10 @@ export default function ActiveSubsPage() {
   const [selectedCard, setSelectedCard] = useState(0);
   const isModalOpen = useAppSelector((state) => state.modal.isModalOpened);
   const isPopupOpened = useAppSelector((state) => state.popup.isPopupOpened);
-  console.log(isPopupOpened)
   const isConfirmOpen = useAppSelector(
     (state) => state.confirm.isConfirmOpened
   );
-  const { data: user } = useGetUserQuery();
+  const user = useAppSelector((state) => state.user.currentUser);
   const defineContent = () => {
     if (user) {
       return user.subscriptions.filter((mySub) => mySub.is_active === true);
@@ -48,11 +46,7 @@ export default function ActiveSubsPage() {
           }
         />
       )}
-      {isPopupOpened && (
-        <Popup
-        content={<ProlongationCancel/>}
-        />
-      )}
+      {isPopupOpened && <Popup content={<ProlongationCancel />} />}
     </section>
   );
 }

@@ -5,11 +5,10 @@ import { useState } from 'react';
 import InActiveCardInfo from '../../components/InActiveCardInfo';
 import Modal from '../../components/Modal';
 import { useAppSelector } from '../../hooks/redux';
-import { useGetUserQuery } from '../../store/pay2u/pay2u.api';
 
 export default function InActiveSubsPage() {
   const [selectedCard, setSelectedCard] = useState(0);
-  const { data: user } = useGetUserQuery();
+    const user = useAppSelector((state) => state.user.currentUser);
   const defineContent = () => {
     if (user) {
       return user.subscriptions.filter((mySub) => mySub.is_active === false);

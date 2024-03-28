@@ -1,80 +1,24 @@
-.activeCardInfo {
+.prolongationCancel {
 }
 
-.activeCardInfo__header {
-  display: flex;
-  align-items: center;
-  margin-bottom: 36px;
-}
-
-.activeCardInfo__logo {
-  width: 44px;
-  height: 44px;
-  object-fit: contain;
-}
-
-.activeCardInfo__name {
-  margin-left: 8px;
-}
-
-.activeCardInfo__title {
-  margin: 0;
+.prolongationCancel__header {
   padding: 0;
+  margin: 24px 0 12px 0;
   font-size: 24px;
   line-height: 32px;
-  font-weight: 700;
-  color: var(--light-type-high);
-}
-
-.activeCardInfo__description {
-  margin: -4px 0 0 0;
-  padding: 0;
-  font-size: 16px;
-  line-height: 24px;
   font-weight: 500;
   color: var(--light-type-high);
 }
 
-.activeCardInfo__list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
-
-.activeCardInfo__listItem {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.activeCardInfo__itemDescription {
-  font-size: 16px;
-  line-height: 24px;
-  font-weight: 500;
-  color: var(--light-type-high);
-  margin: 0;
-  padding: 0;
-}
-
-.activeCardInfo__itemValue {
-  font-size: 16px;
-  line-height: 24px;
-  font-weight: 500;
-  color: var(--light-type-high);
-  margin: 0;
-  padding: 0;
-}
-
-.activeCardInfo__siteLink {
-  display: block;
-  margin-top: 4px;
-  margin-bottom: 32px;
-  text-decoration: none;
+.prolongationCancel__description {
   font-size: 14px;
   line-height: 20px;
   font-weight: 500;
-  color: var(--light-primary-600);
+  color: var(--light-type-medium);
+  padding: 0;
+  margin: 0 0 24px 0;
+}
+
+.prolongationCancel__buttonContainer {
+  width: 91px;
 }

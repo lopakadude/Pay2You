@@ -3,6 +3,7 @@ import ActionButton from '../ActionButton';
 import { useActions } from '../../hooks/actions';
 import { useAppSelector } from '../../hooks/redux';
 import { formatDate } from '../../utils/formatDate';
+import { usePatchAutorenewalFalseCardMutation } from '../../store/pay2u/pay2u.api';
 
 export default function Confirm() {
 
@@ -10,14 +11,16 @@ export default function Confirm() {
 
   const card = useAppSelector((state) => state.currentCard.currentCard);
 
-  function confirm() {
-    console.log('ok');
-    closeModal();
-    closeConfirm();
-    openPopup();
-  }
+  const [patchRenewalFalseCard] = usePatchAutorenewalFalseCardMutation();
 
-  console.log(card)
+  async function confirm() {
+    try {
+      await patchRenewalFalseCard( card.id ).unwrap();
+      closeModal();
+      closeConfirm();
+      openPopup();
+    } catch (error) { console.log(error)}
+  }
 
   function cancel() {
     console.log('cancel');
@@ -29,7 +32,7 @@ export default function Confirm() {
       <h3 className={styles.confirm__header}>Отключить продление Изи Иви?</h3>
       <p className={styles.confirm__description}>
         Подписка перестанет действовать{' '}
-        {card ? formatDate(card.end_date, '2-digit', false) : ''}
+        {formatDate(card.end_date, '2-digit', false)}
       </p>
       <div className={styles.confirm__buttons}>
         <div className={styles.confirm__button} onClick={() => cancel()}>

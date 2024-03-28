@@ -7,13 +7,13 @@ interface UserState {
 
 const initialState: UserState = {
   currentUser: {
-      phone_number: '',
-  first_name: '',
-  middle_name: '',
-  last_name: '',
-  account_balance: 0,
-  cashback: 0,
-  subscriptions: [],
+    phone_number: '',
+    first_name: '',
+    middle_name: '',
+    last_name: '',
+    account_balance: 0,
+    cashback: 0,
+    subscriptions: [],
   },
 };
 

@@ -14,7 +14,7 @@ const initialState: CardState = {
     period: '',
     logo_link: '',
     categories: [],
-    promo: '',
+    promocode: '',
     description: '',
     cashBack: 0,
     is_active: false,

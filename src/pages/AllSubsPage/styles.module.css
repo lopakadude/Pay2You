@@ -3,6 +3,12 @@
 }
 
 .allSubsPage__header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+}
+
+.allSubsPage__title {
   padding: 56px 0 0 0;
   margin: 0 0px 20px 16px;
   font-size: 20px;
@@ -10,4 +16,84 @@
   font-weight: 600;
   color: var(--light-type-high);
   cursor: default;
+}
+
+.allSubsPage__onBoardingButton {
+  height: 24px;
+  padding: 2px 0;
+  margin: 0 16px 0 0;
+  background-color: transparent;
+  border: none;
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 500;
+  color: var(--light-primary-600);
+}
+
+.allSubsPage__balance {
+  list-style: none;
+  padding: 16px;
+  margin: 0 auto 20px auto;
+  width: 343px;
+  height: 80px;
+  box-sizing: border-box;
+  background-color: #fff;
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  position: relative;
+}
+
+.allSubsPage__balanceDescription {
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 500;
+  color: var(--light-type-medium);
+}
+
+.allSubsPage__balanceValue {
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 600;
+  color: var(--light-type-high);
+}
+
+.allSubsPage__cashbackValue {
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 600;
+  color: var(--light-success-600);
+}
+
+.allSubsPage__balanceLink {
+  width: 24px;
+  height: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: transparent;
+  border: none;
+  position: absolute;
+  top: 16px;
+  right: 16px;
+}
+
+.allSubsPage__subTitle {
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 600;
+  padding: 0;
+  margin: 0 0 16px 16px;
+}
+
+.allSubsPage__buttonToSection {
+  width: 343px;
+  margin: 20px auto 0;
+}
+
+.allSubsPage__subscriptionsLists {
+  display: flex;
+  flex-direction: column;
+  row-gap: 32px;
 }

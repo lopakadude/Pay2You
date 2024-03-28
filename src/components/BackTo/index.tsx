@@ -17,7 +17,7 @@ export default function Layout() {
 
   function defineContent() {
     if (location.pathname === '/active-subs' || location.pathname === '/inactive-subs' || location.pathname === '/available-subs' || location.pathname === '/wastes') {
-      return "Подписки партнёров"
+      return 'Предложения партнёров';
     }
     if (location.pathname === '/all-subs') {
       return "Раздел банковского приложения"

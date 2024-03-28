@@ -7,7 +7,7 @@ import { useAppSelector } from '../../hooks/redux';
 import { formatDate } from '../../utils/formatDate';
 import { useEffect } from 'react';
 
-export default function ActiveCardInfo({ cardId }: { cardId: number }) {
+export default function ActiveCardInfo({ cardId }: { cardId: number}) {
   const { openConfirm, setCurrentCard } = useActions();
   const { data: myCard } = useGetMyCardInfoQuery({ id: cardId });
   const user = useAppSelector((state) => state.user.currentUser);
@@ -23,20 +23,22 @@ export default function ActiveCardInfo({ cardId }: { cardId: number }) {
     setCurrentCard(myCard);
   });
 
+  console.log(card)
+
   return (
     <section className={styles.activeCardInfo}>
-      {card && (
+      {myCard && (
         <div>
           <div className={styles.activeCardInfo__header}>
             <img
-              src={`https://pay2u.ddns.net/${card.logo_link}`}
-              alt={card.name}
+              src={`https://pay2u.ddns.net/${myCard.logo_link}`}
+              alt={myCard.name}
               className={styles.activeCardInfo__logo}
             />
             <div className={styles.activeCardInfo__name}>
-              <h3 className={styles.activeCardInfo__title}>{card.name}</h3>
+              <h3 className={styles.activeCardInfo__title}>{myCard.name}</h3>
               <p className={styles.activeCardInfo__description}>
-                {card.description}
+                {myCard.description}
               </p>
             </div>
           </div>
@@ -46,7 +48,7 @@ export default function ActiveCardInfo({ cardId }: { cardId: number }) {
                 Стоимость подписки
               </p>
               <p className={styles.activeCardInfo__itemValue}>
-                {card.monthly_price} &#x20bd;
+                {myCard.monthly_price} &#x20bd;
               </p>
             </li>
             <li className={styles.activeCardInfo__listItem}>
@@ -54,7 +56,7 @@ export default function ActiveCardInfo({ cardId }: { cardId: number }) {
                 Следующее списание
               </p>
               <p className={styles.activeCardInfo__itemValue}>
-                {formatDate(card.end_date, '2-digit', false)}
+                {formatDate(myCard.end_date, '2-digit', false)}
               </p>
             </li>
             <li className={styles.activeCardInfo__listItem}>
@@ -73,13 +75,15 @@ export default function ActiveCardInfo({ cardId }: { cardId: number }) {
             </li>
             <li className={styles.activeCardInfo__listItem}>
               <p className={styles.activeCardInfo__itemDescription}>Промокод</p>
-              <p className={styles.activeCardInfo__itemValue}>{card.promo}</p>
+              <p className={styles.activeCardInfo__itemValue}>
+                {myCard.promocode}
+              </p>
             </li>
           </ul>
           <a
-            href={card.service_link}
+            href={myCard.service_link}
             onClick={() => {
-              copyText(card.promo);
+              copyText(myCard.promocode);
             }}
             className={styles.activeCardInfo__siteLink}
           >

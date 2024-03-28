@@ -21,7 +21,7 @@ export const api = createApi({
       return headers;
     },
   }),
-  tagTypes: ['Auth', 'Subscriptions', 'Merch', 'AllReports'],
+  tagTypes: ['Auth', 'Subscription', 'User'],
   endpoints: (build) => ({
     login: build.mutation<LoginResponse, LoginRequest>({
       query: (credentials) => ({
@@ -35,19 +35,47 @@ export const api = createApi({
       query: () => ({
         url: 'my/',
       }),
+      providesTags: ['User'],
     }),
     getMyCardInfo: build.query<MyCardType, { id: number }>({
       query: ({ id }) => ({
         url: `v1/subscriptions/${id}/`,
       }),
-      providesTags: ['Subscriptions'],
+      providesTags: ['Subscription'],
     }),
     getCovers: build.query<MyCardType[], void>({
       query: () => ({
         url: 'v1/covers/',
       }),
     }),
+    patchAutorenewalFalseCard: build.mutation<unknown, number>({
+      query: (id) => ({
+        url: `v1/subscriptions/${id}/`,
+        method: 'PATCH',
+        body: {
+          autorenewal: false,
+        },
+      }),
+      invalidatesTags: ['User'],
+    }),
+    patchAutorenewalTrueCard: build.mutation<unknown, number>({
+      query: (cardId) => ({
+        url: `v1/subscriptions/${cardId}/`,
+        method: 'PATCH',
+        body: {
+          autorenewal: true,
+        },
+      }),
+      invalidatesTags: ['User'],
+    }),
   }),
 });
 
-export const { useLoginMutation, useGetUserQuery, useGetMyCardInfoQuery, useGetCoversQuery } = api;
+export const {
+  useLoginMutation,
+  useLazyGetUserQuery,
+  useGetMyCardInfoQuery,
+  useLazyGetCoversQuery,
+  usePatchAutorenewalFalseCardMutation,
+  usePatchAutorenewalTrueCardMutation,
+} = api;

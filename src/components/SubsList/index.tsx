@@ -23,11 +23,18 @@ export default function SubsList({
 
   const definePeriodTitle = (sub: MyCardType) => {
     if (sub.period === 'monthly') {
-      return 'мес';
+      return 'месяц';
     } else if (sub.period === 'annual') {
       return 'год';
     }
   }
+
+function leftDays(date: string): number {
+  const [dd, mm, yyyy]: number[] = date.split('.').map(Number);
+  const Till: Date = new Date(yyyy, mm - 1, dd);
+  const Now: Date = new Date();
+  return Math.floor((Till.getTime() - Now.getTime()) / 864e5);
+}
 
   return (
     <ul
@@ -67,9 +74,16 @@ export default function SubsList({
               {sub.description}
             </p>
           )}
-          {type === 'flex' && colorSсheme !== 'none-active' && (
+          {type === 'flex' &&
+            colorSсheme !== 'none-active' &&
+            location.pathname !== '/all-subs' && (
+              <p className={styles.subList__itemDate}>
+                до {formatDate(sub.end_date, '2-digit', false)}
+              </p>
+            )}
+          {type === 'flex' && location.pathname === '/all-subs' && (
             <p className={styles.subList__itemDate}>
-              до {formatDate(sub.end_date, '2-digit', false)}
+              осталось {leftDays(formatDate(sub.end_date, '2-digit', false))} дней
             </p>
           )}
           {type === 'flex' && colorSсheme === 'none-active' && (
@@ -85,7 +99,7 @@ export default function SubsList({
                   : ''
               }`}
             >
-              {sub.price} &#x20bd;{' '}
+              {Math.trunc(sub.price)} &#x20bd;{' '}
               <span className={styles.subList__itemDuration}>
                 {' '}
                 в {definePeriodTitle(sub)}
@@ -93,7 +107,9 @@ export default function SubsList({
             </p>
           )}
           {type === 'grid' && (
-            <p className={styles.subList__itemCost}>от {sub.price} &#x20bd;</p>
+            <p className={styles.subList__itemCost}>
+              от {Math.trunc(sub.price)} &#x20bd;
+            </p>
           )}
           {type === 'grid' && (
             <div className={styles.subList__itemCAshBackContainer}>

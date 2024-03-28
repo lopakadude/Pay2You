@@ -11,6 +11,7 @@ import {
   AllSubsPage,
   NotFoundPage,
   WastesPage,
+  SubscriptionPage,
 } from './components';
 
 import Layout from '../components/Layout';
@@ -26,6 +27,7 @@ const router = createBrowserRouter(
           <Route path="available-subs" element={<AvailableSubsPage />} />
           <Route path="all-subs" element={<AllSubsPage />} />
           <Route path="wastes" element={<WastesPage />} />
+          <Route path="available-subs/activeCard" element={<SubscriptionPage />} />
         </Route>
       </Route>
     </>

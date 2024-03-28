@@ -10,7 +10,7 @@ export default function ProlongationCancel() {
   const { closePopup} = useActions();
   const card = useAppSelector((state) => state.currentCard.currentCard);
 
-  function handleClosePC() {
+  function handleCloseNotificaton() {
     closePopup();
   }
 
@@ -28,9 +28,9 @@ export default function ProlongationCancel() {
       </p>
       <div
         className={styles.prolongationCancel__buttonContainer}
-        onClick={() => handleClosePC()}
+        onClick={() => handleCloseNotificaton()}
       >
-        <ActionButton title="Понятно" />
+        <ActionButton title="Понятно" size='m' />
       </div>
     </div>
   );
