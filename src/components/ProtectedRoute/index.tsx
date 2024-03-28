@@ -1,5 +1,5 @@
 import { useAppSelector } from '../../hooks/redux';
-import { Outlet } from 'react-router-dom';
+import { Outlet, Navigate } from 'react-router-dom';
 import { RootState } from '../../store';
 import NotFoundPage from '../../pages/NotFoundPage';
 
@@ -8,7 +8,7 @@ const ProtectedRoute = () => {
     (state: RootState) => state.auth.isLoggedIn,
   );
 
-  return isLoggedIn ? <Outlet /> : <NotFoundPage />;
+  return isLoggedIn ? <Outlet /> : <Navigate to='/login'/>;
 };
 
 export default ProtectedRoute;

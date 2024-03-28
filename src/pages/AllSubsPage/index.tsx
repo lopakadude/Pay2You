@@ -7,10 +7,8 @@ import { useEffect, useState } from 'react';
 import {
   useLazyGetCoversQuery,
   useLazyGetUserQuery,
-  useLoginMutation,
 } from '../../store/pay2u/pay2u.api';
 import arrowRight from '../../assets/chevron-right.svg';
-import { RootState } from '../../store';
 import { useAppSelector } from '../../hooks/redux';
 import SubsList from '../../components/SubsList';
 import Modal from '../../components/Modal';
@@ -19,21 +17,15 @@ import Confirm from '../../components/Confirm';
 
 export default function AllSubsPage() {
   const navigate = useNavigate();
-  const { setLoggedIn } = useActions();
-  const [login] = useLoginMutation();
   const [triggerUser, { data: user }] = useLazyGetUserQuery();
   const [triggerCovers, { data: covers }] = useLazyGetCoversQuery();
   const { setCurrentUser } = useActions();
   const { setCovers } = useActions();
-  const number = '0123456789';
   const activeSubs = user?.subscriptions.filter(
     (mySub) => mySub.is_active === true
   );
   const inActiveSubs = user?.subscriptions.filter(
     (mySub) => mySub.is_active === false
-  );
-  const isLoggedIn = useAppSelector(
-    (state: RootState) => state.auth.isLoggedIn
   );
   const isModalOpen = useAppSelector((state) => state.modal.isModalOpened);
   const isConfirmOpen = useAppSelector(
@@ -49,23 +41,6 @@ export default function AllSubsPage() {
       .unwrap()
       .then((covers) => setCovers(covers));
   }, []);
-
-  const auth = async () => {
-    try {
-      const res = await login({ phone_number: number }).unwrap();
-      if (res.token) {
-        localStorage.setItem('authToken', res.token);
-        setLoggedIn(true);
-        <Navigate to="/" replace />;
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  useEffect(() => {
-    if (!isLoggedIn) auth();
-  }, [isLoggedIn]);
 
   return (
     <section className={styles.allSubsPage}>
