@@ -2,6 +2,7 @@ import styles from './styles.module.css';
 import human1 from '../../assets/standing1.svg';
 import human2 from '../../assets/human2.svg';
 import human3 from '../../assets/human3.svg';
+import skinfor3 from '../../assets/SkinFor3.svg'
 import cardSquare from '../../assets/Card_Square.svg';
 import headerBlock from '../../assets/Header_blocks.svg';
 import humanlLeft from '../../assets/humanLeftFor5.svg';
@@ -116,6 +117,11 @@ export default function OnBoardingPage({
             src={activeCard}
             alt="иконка иви"
             className={`${styles.slide__img} ${styles.slide__iviCard3}`}
+          />
+          <img
+            src={skinfor3}
+            alt="иконка руки"
+            className={`${styles.slide__img} ${styles.slide__iviCardHand}`}
           />
           <p className={styles.slide__description}>
             Всё прозрачно. Вы сразу видите все тарифы и размер кешбэка

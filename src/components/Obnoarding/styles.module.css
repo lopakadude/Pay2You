@@ -93,8 +93,13 @@
 }
 
 .slide__iviCard3 {
-  top: 301px;
+  top: 299px;
   left: 16px;
+}
+
+.slide__iviCardHand {
+  top: 288px;
+  left: 114px;
 }
 
 .slide__slide4 {
