@@ -1,0 +1,140 @@
+.slide {
+  position: relative;
+}
+
+.swiper__headerSlide {
+  font-size: 20px;
+  line-height: 30px;
+  font-weight: 600;
+  text-align: center;
+  padding: 0;
+  margin: 64px 0 456px 0;
+}
+
+.slide__description {
+  width: 343px;
+  margin: 0 auto 56px;
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 400;
+  text-align: center;
+  color: var(--light-type-medium);
+}
+
+.onBoarding__button {
+  width: 343px;
+  margin: 20px auto 0;
+}
+
+.slide__img {
+  position: absolute;
+}
+
+.slide__human1 {
+  top: 238px;
+  left: 106px;
+  right: 106px;
+  bottom: 338px;
+}
+
+.slide__ivi {
+  top: 135px;
+  left: 52px;
+  right: 213px;
+}
+
+.slide__okko {
+  top: 126px;
+  left: 186px;
+  right: 117px;
+  border-radius: 50%;
+}
+
+.slide__yandexplus {
+  top: 183px;
+  left: 262px;
+  right: 49px;
+}
+
+.slide__spotify {
+  top: 218px;
+  left: 218px;
+  right: 117px;
+}
+
+.slide__start {
+  top: 262px;
+  left: 251px;
+  right: 92px;
+}
+
+.slide__litres {
+  top: 289px;
+  left: 223px;
+  right: 128px;
+}
+
+.slide__human2 {
+  top: 142px;
+  left: 80px;
+  right: 63px;
+  z-index: 2;
+}
+
+.slide__iviCard {
+  top: 126px;
+  left: 238px;
+}
+
+.slide__human3 {
+  top: 142px;
+  left: 93px;
+  right: 50px;
+}
+
+.slide__iviCard3 {
+  top: 301px;
+  left: 16px;
+}
+
+.slide__slide4 {
+  top: 118px;
+  left: 48px;
+  right: 47px;
+}
+
+.slide__slide5HumanRight {
+  top: 237px;
+  right: -6px;
+  z-index: 2;
+}
+
+.slide__slide5HumanLeft {
+  top: 211px;
+  left: 5px;
+  z-index: 2;
+}
+
+.slide__slide5IviCard {
+  top: 126px;
+  left: 106px;
+  right: 106px;
+}
+
+.slide__slide5LitresCard {
+  top: 178px;
+  left: 106px;
+  right: 106px;
+}
+
+.slide__slide5OkkoCard {
+  top: 230px;
+  left: 106px;
+  right: 106px;
+}
+
+.slide__slide5YaPlusCard {
+  top: 282px;
+  left: 106px;
+  right: 106px;
+}

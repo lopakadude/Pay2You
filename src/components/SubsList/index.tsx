@@ -83,7 +83,8 @@ function leftDays(date: string): number {
             )}
           {type === 'flex' && location.pathname === '/all-subs' && (
             <p className={styles.subList__itemDate}>
-              осталось {leftDays(formatDate(sub.end_date, '2-digit', false))} дней
+              осталось {leftDays(formatDate(sub.end_date, '2-digit', false))}{' '}
+              дней
             </p>
           )}
           {type === 'flex' && colorSсheme === 'none-active' && (
@@ -114,7 +115,7 @@ function leftDays(date: string): number {
           {type === 'grid' && (
             <div className={styles.subList__itemCAshBackContainer}>
               <p className={styles.subList__itemCashBack}>
-                Кешбэк {sub.cashBack}%
+                Кешбэк {sub.cashback_percent}%
               </p>
             </div>
           )}

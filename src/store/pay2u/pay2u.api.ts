@@ -37,8 +37,8 @@ export const api = createApi({
       }),
       providesTags: ['User'],
     }),
-    getMyCardInfo: build.query<MyCardType, { id: number }>({
-      query: ({ id }) => ({
+    getMyCardInfo: build.query<MyCardType, number>({
+      query: ( id ) => ({
         url: `v1/subscriptions/${id}/`,
       }),
       providesTags: ['Subscription'],
@@ -74,7 +74,7 @@ export const api = createApi({
 export const {
   useLoginMutation,
   useLazyGetUserQuery,
-  useGetMyCardInfoQuery,
+  useLazyGetMyCardInfoQuery,
   useLazyGetCoversQuery,
   usePatchAutorenewalFalseCardMutation,
   usePatchAutorenewalTrueCardMutation,

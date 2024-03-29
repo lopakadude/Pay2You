@@ -2,14 +2,14 @@ import styles from './styles.module.css';
 import sbp from '../../assets/sbp.svg';
 import ActionButton from '../ActionButton';
 import { useActions } from '../../hooks/actions';
-import { useGetMyCardInfoQuery } from '../../store/pay2u/pay2u.api';
+import { useLazyGetMyCardInfoQuery } from '../../store/pay2u/pay2u.api';
 import { useAppSelector } from '../../hooks/redux';
 import { formatDate } from '../../utils/formatDate';
 import { useEffect } from 'react';
 
 export default function InActiveCardInfo({ cardId }: { cardId: number }) {
   const { closeModal, setCurrentCard } = useActions();
-  const { data: myCard } = useGetMyCardInfoQuery({ id: cardId });
+  const [triggerCard] = useLazyGetMyCardInfoQuery();
   const user = useAppSelector((state) => state.user.currentUser);
   const card = useAppSelector((state) => state.currentCard.currentCard);
   console.log(card);
@@ -19,8 +19,10 @@ export default function InActiveCardInfo({ cardId }: { cardId: number }) {
   }
 
   useEffect(() => {
-    setCurrentCard(myCard);
-  });
+    triggerCard(cardId)
+      .unwrap()
+      .then((card) => setCurrentCard(card));
+  }, []);
 
   return (
     <section className={styles.inActiveCardInfo}>
@@ -48,7 +50,7 @@ export default function InActiveCardInfo({ cardId }: { cardId: number }) {
                 Срок действия истёк
               </p>
               <p className={styles.inActiveCardInfo__itemValue}>
-                {myCard ? formatDate(myCard.end_date, '2-digit', false) : ''}
+                {formatDate(card.end_date, '2-digit', false)}
               </p>
             </li>
             <li className={styles.inActiveCardInfo__listItem}>

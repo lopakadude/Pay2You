@@ -7,12 +7,12 @@ type MyCardType = {
   logo_link: string;
   categories: number[];
   description: string;
-  cashBack?: number;
+  cashback_percent?: number;
   is_active: boolean;
-  service_link?: string;
-  monthly_price?: number;
-  annual_price?: number;
-  semi_annual_price?: number;
+  service_link: string;
+  monthly_price: number;
+  annual_price: number;
+  semi_annual_price: number;
   promocode: string;
 };
 

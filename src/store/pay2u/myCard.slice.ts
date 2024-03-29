@@ -16,7 +16,11 @@ const initialState: CardState = {
     categories: [],
     promocode: '',
     description: '',
-    cashBack: 0,
+    cashback_percent: 0,
+    service_link: '',
+    monthly_price: 0,
+    annual_price: 0,
+    semi_annual_price: 0,
     is_active: false,
   },
 };

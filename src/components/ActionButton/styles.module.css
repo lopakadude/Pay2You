@@ -46,4 +46,5 @@
 
 .actionButton_active {
   background-color: var(--light-primary-600);
+  color: #fff;
 }
