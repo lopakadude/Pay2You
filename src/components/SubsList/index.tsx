@@ -86,7 +86,7 @@ export default function SubsList({
                   : ''
               }`}
             >
-              {sub.description}
+              {attachment === 'offer' ? sub.preview : sub.description}
             </p>
           )}
           {type === 'flex' &&

@@ -22,6 +22,7 @@ const initialState: CardState = {
     annual_price: 0,
     semi_annual_price: 0,
     is_active: false,
+    preview: '',
   },
 };
 

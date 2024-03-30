@@ -98,7 +98,7 @@
   color: var(--light-primary-600);
   cursor: pointer;
   grid-column: 1;
-  grid-row: 4;
+  grid-row: 5;
 }
 
 .cover__price {
@@ -136,6 +136,7 @@
   grid-row: 3;
   display: flex;
   align-items: center;
+  justify-self: end;
 }
 
 .cover__cashback {
@@ -145,4 +146,70 @@
   line-height: 20px;
   font-weight: 500;
   color: var(--light-primary-600);
+}
+
+.cover__actionButton {
+  width: 311px;
+  grid-column: span 2;
+  grid-row: 4;
+  justify-self: center;
+  margin-bottom: 12px;
+}
+
+.coverCard {
+  display: flex;
+  flex-direction: column;
+  height: calc(100vh - 70px);
+}
+
+.coverCard__list {
+  list-style: none;
+  padding: 0;
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  row-gap: 24px;
+}
+
+.coverCard__item {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.coverCard__itemNumber {
+  position: absolute;
+  left: 13.25px;
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 500;
+  padding: 0;
+  margin: 0;
+  color: var(--light-primary-600);
+}
+
+.coverCard__numberContainer {
+  margin-right: 12px;
+}
+
+.coverCard__itemDescription {
+  padding: 0;
+  margin: 0;
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 500;
+  color: var(--light-type-high);
+}
+
+.coverCard__offer {
+  font-size: 12px;
+  line-height: 18px;
+  font-weight: 400;
+  color: var(--light-primary-600);
+  margin-top: 20px;
+  margin-bottom: 24px;
+}
+
+.coverCard__actionButton {
+  margin-top: auto;
 }

@@ -15,6 +15,7 @@ type MyCardType = {
   semi_annual_price: number;
   promocode: string;
   is_subscribed?: boolean;
+  preview: string;
 };
 
 type UserType = {

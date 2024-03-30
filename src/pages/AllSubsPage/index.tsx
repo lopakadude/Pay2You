@@ -47,8 +47,6 @@ export default function AllSubsPage() {
       .then((covers) => setCovers(covers.results));
   }, []);
 
-  console.log(currentCovers);
-
   return (
     <section className={styles.allSubsPage}>
       {!isOnboardingOpen ? (
