@@ -13,6 +13,7 @@ import { useAppSelector } from '../../hooks/redux';
 import SubsList from '../../components/SubsList';
 import Modal from '../../components/Modal';
 import ActiveCardInfo from '../../components/ActiveCardInfo';
+import InActiveCardInfo from '../../components/InActiveCardInfo';
 import Confirm from '../../components/Confirm';
 import OnBoardingPage from '../../components/Obnoarding/Onboarding';
 
@@ -33,7 +34,8 @@ export default function AllSubsPage() {
     (state) => state.confirm.isConfirmOpened
   );
   const currentCovers = useAppSelector((state) => state.covers.covers);
-  const [selectedCard, setSelectedCard] = useState(0);
+  const [selectedActiveCard, setSelectedActiveCard] = useState(0);
+  const [selectedInActiveCard, setSelectedInActiveCard] = useState(0);
   const [isOnboardingOpen, setIsOnboardingOpen] = useState(false);
 
   useEffect(() => {
@@ -89,7 +91,8 @@ export default function AllSubsPage() {
                 <SubsList
                   data={activeSubs.slice(0, 3)}
                   type="flex"
-                  setSelectedCard={setSelectedCard}
+                  setSelectedActiveCard={setSelectedActiveCard}
+                  attachment="myActive"
                 />
                 {activeSubs.length > 3 && (
                   <div
@@ -110,7 +113,8 @@ export default function AllSubsPage() {
                   data={inActiveSubs.slice(0, 3)}
                   type="flex"
                   colorSсheme="none-active"
-                  setSelectedCard={setSelectedCard}
+                  setSelectedInActiveCard={setSelectedInActiveCard}
+                  attachment="myInActive"
                 />
                 {inActiveSubs.length > 3 && (
                   <div
@@ -128,7 +132,7 @@ export default function AllSubsPage() {
                 <SubsList
                   data={currentCovers.slice(0, 2)}
                   type="grid"
-                  setSelectedCard={setSelectedCard}
+                  attachment="offer"
                 />
                 {currentCovers.length > 2 && (
                   <div
@@ -141,17 +145,26 @@ export default function AllSubsPage() {
               </div>
             )}
           </div>
-          {isModalOpen && (
+          {selectedActiveCard !== 0
+            ? isModalOpen && (
+                <Modal
+                  setSelectedActiveCard={setSelectedActiveCard}
+                  content={
+                    !isConfirmOpen ? (
+                      <ActiveCardInfo cardId={selectedActiveCard} />
+                    ) : (
+                      <Confirm />
+                    )
+                  }
+                />
+              )
+            : null}
+          {selectedInActiveCard !== 0 ? isModalOpen && (
             <Modal
-              content={
-                !isConfirmOpen ? (
-                  <ActiveCardInfo cardId={selectedCard} />
-                ) : (
-                  <Confirm />
-                )
-              }
+              setSelectedInActiveCard={setSelectedInActiveCard}
+              content={<InActiveCardInfo cardId={selectedInActiveCard} />}
             />
-          )}
+          ) : null}
         </div>
       ) : (
         <OnBoardingPage setIsOnboardingOpen={setIsOnboardingOpen} />

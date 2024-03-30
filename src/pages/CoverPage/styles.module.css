@@ -1,0 +1,148 @@
+.currentCover {
+  width: 343px;
+  padding-left: 16px;
+  padding-right: 16px;
+}
+
+.currentCover__header {
+  display: flex;
+  align-items: center;
+  margin-top: 12px;
+  margin-bottom: 16px;
+}
+
+.currentCover__logo {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+}
+
+.currentCover__title {
+  padding: 0;
+  margin: 0 0 0 8px;
+  font-size: 24px;
+  line-height: 32px;
+  font-weight: 700;
+  color: var(--light-type-high);
+}
+
+.coversList {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  row-gap: 16px;
+}
+
+.cover {
+  width: 343px;
+  padding: 16px 16px 20px 16px;
+  box-sizing: border-box;
+  border-radius: 16px;
+  background-color: #fff;
+  display: grid;
+  justify-content: space-between;
+  box-shadow: 0px 3px 6px 0px rgba(148, 163, 184, 0.15);
+}
+
+.cover__subtitle {
+  padding: 0;
+  margin: 0;
+  font-size: 20px;
+  line-height: 30px;
+  font-weight: 500;
+  color: var(--light-type-high);
+  cursor: default;
+  grid-column: 1;
+  grid-row: 1;
+}
+
+.cover__description {
+  padding: 0;
+  margin: 0 0 8px 0;
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 500;
+  color: var(--light-type-medium);
+  cursor: default;
+  grid-column: 1;
+  grid-row: 2;
+}
+
+.cover__subscribeCondition {
+  padding: 0;
+  margin: 0 0 20px 0;
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 500;
+  color: var(--light-success-600);
+  cursor: default;
+  grid-column: 1;
+  grid-row: 3;
+  display: flex;
+  align-items: center;
+}
+
+.cover__checkLogo {
+  margin-right: 4px;
+}
+
+.cover__buttonAbout {
+  background-color: transparent;
+  border: none;
+  width: 156px;
+  padding: 0;
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 500;
+  color: var(--light-primary-600);
+  cursor: pointer;
+  grid-column: 1;
+  grid-row: 4;
+}
+
+.cover__price {
+  padding: 0;
+  margin: 0;
+  font-size: 20px;
+  line-height: 30px;
+  font-weight: 500;
+  color: var(--light-type-high);
+  grid-column: 2;
+  grid-row: 1;
+  text-align: right;
+}
+
+.cover__period {
+  padding: 0;
+  margin: 0;
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 500;
+  color: var(--light-type-medium);
+  grid-column: 2;
+  grid-row: 2;
+  text-align: right;
+}
+
+.cover__cashbackContainer {
+  padding: 2px 8px;
+  border-radius: 12px;
+  border: 1px solid var(--light-primary-600);
+  width: max-content;
+  height: 24px;
+  box-sizing: border-box;
+  grid-column: 2;
+  grid-row: 3;
+  display: flex;
+  align-items: center;
+}
+
+.cover__cashback {
+  padding: 0;
+  margin: 0;
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 500;
+  color: var(--light-primary-600);
+}

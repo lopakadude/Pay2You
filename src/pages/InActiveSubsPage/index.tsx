@@ -7,8 +7,8 @@ import Modal from '../../components/Modal';
 import { useAppSelector } from '../../hooks/redux';
 
 export default function InActiveSubsPage() {
-  const [selectedCard, setSelectedCard] = useState(0);
-    const user = useAppSelector((state) => state.user.currentUser);
+  const [selectedInActiveCard, setSelectedInActiveCard] = useState(0);
+  const user = useAppSelector((state) => state.user.currentUser);
   const defineContent = () => {
     if (user) {
       return user.subscriptions.filter((mySub) => mySub.is_active === false);
@@ -27,10 +27,11 @@ export default function InActiveSubsPage() {
         type="flex"
         colorSсheme="none-active"
         data={defineContent()}
-        setSelectedCard={setSelectedCard}
+        setSelectedInActiveCard={setSelectedInActiveCard}
+        attachment="my"
       />
       {isModalOpen && (
-        <Modal content={<InActiveCardInfo cardId={selectedCard} />} />
+        <Modal content={<InActiveCardInfo cardId={selectedInActiveCard} />} />
       )}
     </section>
   );

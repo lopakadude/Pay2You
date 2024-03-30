@@ -1,13 +1,9 @@
-import { useState } from 'react';
 import Navbar from '../../components/Navbar';
 import SubsList from '../../components/SubsList';
 import { useAppSelector } from '../../hooks/redux';
 import styles from './styles.module.css';
 
 export default function AvailableSubsPage() {
-  const [selectedCard, setSelectedCard] = useState(0);
-
-
 
   const currentCovers = useAppSelector((state) => state.covers.covers);
 
@@ -19,9 +15,8 @@ export default function AvailableSubsPage() {
         type="grid"
         data={currentCovers ? currentCovers : []}
         colorDescription="secondary"
-        setSelectedCard={setSelectedCard}
+        attachment="offer"
       />
-      <div>{selectedCard}</div>
     </section>
   );
 }

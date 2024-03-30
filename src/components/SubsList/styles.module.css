@@ -30,6 +30,7 @@
   overflow: hidden;
   position: relative;
   display: grid;
+  box-shadow: 0px 3px 6px 0px rgba(148, 163, 184, 0.15);
 }
 
 .subsList__item_type_flex {
@@ -116,10 +117,11 @@
   object-fit: contain;
   object-position: center;
   position: absolute;
+  border-radius: 50%;
 }
 
 .subList__logo_color_noneActive {
-  filter: saturate(0)
+  filter: saturate(0);
 }
 
 .subList__logo_type_flex {

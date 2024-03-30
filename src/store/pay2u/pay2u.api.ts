@@ -38,14 +38,19 @@ export const api = createApi({
       providesTags: ['User'],
     }),
     getMyCardInfo: build.query<MyCardType, number>({
-      query: ( id ) => ({
+      query: (id) => ({
         url: `v1/subscriptions/${id}/`,
       }),
       providesTags: ['Subscription'],
     }),
-    getCovers: build.query<{results: MyCardType[]}, void>({
+    getCovers: build.query<{ results: MyCardType[] }, void>({
       query: () => ({
         url: 'v1/covers/',
+      }),
+    }),
+    getCoverInfo: build.query<CoverCardType, number>({
+      query: (id) => ({
+        url: `v1/covers/${id}/`,
       }),
     }),
     patchAutorenewalFalseCard: build.mutation<unknown, number>({
@@ -76,6 +81,7 @@ export const {
   useLazyGetUserQuery,
   useLazyGetMyCardInfoQuery,
   useLazyGetCoversQuery,
+  useLazyGetCoverInfoQuery,
   usePatchAutorenewalFalseCardMutation,
   usePatchAutorenewalTrueCardMutation,
 } = api;

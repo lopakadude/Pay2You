@@ -2,7 +2,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import styles from './styles.module.css';
 import ArrowLeft from '../icons/ArrowLeft/Arrowleft';
 
-export default function Layout() {
+export default function BackTo() {
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -12,6 +12,9 @@ export default function Layout() {
     }
     if (location.pathname === '/active-subs') {
       navigate('/', { replace: true });
+    }
+    else {
+      navigate(-1);
     }
   }
 

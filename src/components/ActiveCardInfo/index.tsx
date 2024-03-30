@@ -25,8 +25,6 @@ export default function ActiveCardInfo({ cardId }: { cardId: number}) {
     .then((card) => setCurrentCard(card))
   }, []);
 
-  console.log(card)
-
   return (
     <section className={styles.activeCardInfo}>
       {card && (

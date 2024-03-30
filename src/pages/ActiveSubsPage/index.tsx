@@ -10,7 +10,7 @@ import Popup from '../../components/Popup';
 import ProlongationCancel from '../../components/ProlongationCancel';
 
 export default function ActiveSubsPage() {
-  const [selectedCard, setSelectedCard] = useState(0);
+  const [selectedActiveCard, setSelectedActiveCard] = useState(0);
   const isModalOpen = useAppSelector((state) => state.modal.isModalOpened);
   const isPopupOpened = useAppSelector((state) => state.popup.isPopupOpened);
   const isConfirmOpen = useAppSelector(
@@ -33,13 +33,14 @@ export default function ActiveSubsPage() {
         type="flex"
         data={defineContent()}
         colorDescription="primary"
-        setSelectedCard={setSelectedCard}
+        attachment="my"
+        setSelectedActiveCard={setSelectedActiveCard}
       />
       {isModalOpen && (
         <Modal
           content={
             !isConfirmOpen ? (
-              <ActiveCardInfo cardId={selectedCard} />
+              <ActiveCardInfo cardId={selectedActiveCard} />
             ) : (
               <Confirm />
             )

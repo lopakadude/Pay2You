@@ -7,6 +7,7 @@ import { confirmReducer } from './pay2u/confirm.slice';
 import { userReducer } from './pay2u/user.slice';
 import { currentCardReducer } from './pay2u/myCard.slice';
 import { coversReducer } from './pay2u/covers.slice';
+import { currentCoverIdReducer } from './pay2u/coverCard.slice';
 
 export const store = configureStore({
   reducer: {
@@ -18,6 +19,7 @@ export const store = configureStore({
     user: userReducer,
     currentCard: currentCardReducer,
     covers: coversReducer,
+    currentCoverId: currentCoverIdReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(api.middleware),

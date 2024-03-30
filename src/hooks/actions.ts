@@ -7,6 +7,7 @@ import { confirmActions } from '../store/pay2u/confirm.slice';
 import { userActions } from '../store/pay2u/user.slice';
 import { currentCardActions } from '../store/pay2u/myCard.slice';
 import { coversActions } from '../store/pay2u/covers.slice';
+import { currentCoverIdActions } from '../store/pay2u/coverCard.slice';
 
 const actions = {
   ...authActions,
@@ -16,6 +17,7 @@ const actions = {
   ...userActions,
   ...currentCardActions,
   ...coversActions,
+  ...currentCoverIdActions,
 };
 
 export const useActions = () => {

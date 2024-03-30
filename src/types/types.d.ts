@@ -7,13 +7,14 @@ type MyCardType = {
   logo_link: string;
   categories: number[];
   description: string;
-  cashback_percent?: number;
+  cashback_percent: number;
   is_active: boolean;
   service_link: string;
   monthly_price: number;
   annual_price: number;
   semi_annual_price: number;
   promocode: string;
+  is_subscribed?: boolean;
 };
 
 type UserType = {
@@ -25,3 +26,12 @@ type UserType = {
   cashback: number;
   subscriptions: MyCardType[];
 };
+
+type CoverCardType = {
+  categories: number[];
+  logo_link: string;
+  name: string;
+  service_link: string;
+  subscriptions: MyCardType[]
+};
+

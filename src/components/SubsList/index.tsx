@@ -1,23 +1,38 @@
 import styles from './styles.module.css';
 import { useActions } from '../../hooks/actions';
 import { formatDate } from '../../utils/formatDate';
+import { useNavigate } from 'react-router-dom';
 
 export default function SubsList({
   data,
   type,
   colorDescription,
   colorSсheme,
-  setSelectedCard,
+  setSelectedActiveCard,
+  setSelectedInActiveCard,
+  attachment,
 }: {
   data: MyCardType[];
   type: string;
   colorDescription?: string;
   colorSсheme?: string;
-  setSelectedCard: (id: number) => void;
+  setSelectedActiveCard?: (id: number) => void;
+  setSelectedInActiveCard?: (id: number) => void;
+  attachment: string;
 }) {
-  const { openModal } = useActions();
+  const navigate = useNavigate();
+  const { openModal, setCurrentCoverId } = useActions();
   const handleCardClick = (id: number) => {
-    setSelectedCard(id);
+    if (attachment === 'myActive' && setSelectedActiveCard) {
+      setSelectedActiveCard(id);
+    }
+    if (attachment === 'myInActive' && setSelectedInActiveCard) {
+      setSelectedInActiveCard(id);
+    }
+    if (attachment === 'offer') {
+      setCurrentCoverId(id);
+      navigate(`/available-subs/${id}`);
+    }
     openModal();
   };
 
@@ -27,14 +42,14 @@ export default function SubsList({
     } else if (sub.period === 'annual') {
       return 'год';
     }
-  }
+  };
 
-function leftDays(date: string): number {
-  const [dd, mm, yyyy]: number[] = date.split('.').map(Number);
-  const Till: Date = new Date(yyyy, mm - 1, dd);
-  const Now: Date = new Date();
-  return Math.floor((Till.getTime() - Now.getTime()) / 864e5);
-}
+  function leftDays(date: string): number {
+    const [dd, mm, yyyy]: number[] = date.split('.').map(Number);
+    const Till: Date = new Date(yyyy, mm - 1, dd);
+    const Now: Date = new Date();
+    return Math.floor((Till.getTime() - Now.getTime()) / 864e5);
+  }
 
   return (
     <ul
