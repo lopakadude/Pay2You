@@ -15,16 +15,6 @@ export default function CoverPage() {
     triggerCover(coverId).unwrap();
   }, []);
 
-  console.log(currentCover);
-
-  function isActiveSubsribe(is_subscribed: boolean) {
-    if (is_subscribed) {
-      return 'Подписка подключена';
-    } else {
-      return '30 дней за 1 ₱';
-    }
-  }
-
   return (
     <section className={styles.currentCover}>
       {currentCover && (
@@ -52,8 +42,8 @@ export default function CoverPage() {
                     />
                   )}
                   {cover.is_subscribed
-                    ? isActiveSubsribe(cover.is_subscribed)
-                    : ''}
+                    ? 'Подписка подключена'
+                    : '30 дней за 1 ₱'}
                 </p>
                 <button className={styles.cover__buttonAbout}>
                   Подробнее о подписке
