@@ -20,6 +20,14 @@ export default function CoverPage() {
     triggerCover(coverId).unwrap();
   }, []);
 
+  console.log(currentCover)
+
+  const date = () => {
+    if (new Date().getDate() === 31) {
+      return 1
+    } else { return new Date().getDate();}
+  }
+
   return (
     <section className={styles.currentCover}>
       {currentCover && !isCoverDescriptionOpened && (
@@ -113,7 +121,7 @@ export default function CoverPage() {
               <p className={styles.coverCard__itemDescription}>
                 Будем начислять кешбэк{' '}
                 {Math.trunc(selectedCoverCard.cashback_percent)}% каждый месяц{' '}
-                {new Date().getDay()} числа
+                {date()} числа
               </p>
               <p className={styles.coverCard__itemNumber}>2</p>
             </li>
