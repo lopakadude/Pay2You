@@ -6,6 +6,9 @@ import BackTo from '../../components/BackTo/index';
 import greenCheck from '../../assets/check-broken_green.svg';
 import ActionButton from '../../components/ActionButton';
 import purpleSquare from '../../assets/squarePurpleIcon.svg';
+import { useActions } from '../../hooks/actions';
+import Modal from '../../components/Modal';
+import SubscriptionForm from '../../components/SubscriptionForm';
 
 export default function CoverPage() {
   const coverId = useAppSelector(
@@ -15,6 +18,8 @@ export default function CoverPage() {
   const [isCoverDescriptionOpened, setIsCoverDescriptionOpened] =
     useState(false);
   const [selectedCoverCard, setSelectedCoverCard] = useState<MyCardType>();
+  const isModalOpen = useAppSelector((state) => state.modal.isModalOpened);
+  const { openModal } = useActions();
 
   useEffect(() => {
     triggerCover(coverId).unwrap();
@@ -26,6 +31,11 @@ export default function CoverPage() {
     if (new Date().getDate() === 31) {
       return 1
     } else { return new Date().getDate();}
+  }
+
+  const handleSubButtonClick = (cover: MyCardType) => {
+    setSelectedCoverCard(cover);
+    openModal();
   }
 
   return (
@@ -77,7 +87,12 @@ export default function CoverPage() {
                   </p>
                 </div>
                 {!cover.is_subscribed && (
-                  <div className={styles.cover__actionButton}>
+                  <div
+                    className={styles.cover__actionButton}
+                    onClick={() => {
+                      handleSubButtonClick(cover);
+                    }}
+                  >
                     <ActionButton title="Подключить" active size="m" />
                   </div>
                 )}
@@ -159,17 +174,25 @@ export default function CoverPage() {
               <p className={styles.coverCard__itemNumber}>5</p>
             </li>
           </ul>
-          <div className={styles.coverCard__actionButton}>
+          <div
+            className={styles.coverCard__actionButton}
+            onClick={() => {
+              handleSubButtonClick(selectedCoverCard);
+            }}
+          >
             <ActionButton active title="Подключить" />
           </div>
           <a
             className={styles.coverCard__offer}
             href={currentCover.service_link}
-            target='_blank'
+            target="_blank"
           >
             Подробнее об оферте {selectedCoverCard.name}
           </a>
         </div>
+      )}
+      {isModalOpen && selectedCoverCard && (
+        <Modal content={<SubscriptionForm card={selectedCoverCard} />} />
       )}
     </section>
   );

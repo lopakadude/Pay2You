@@ -34,7 +34,7 @@ export default function OnBoardingPage({
 }) {
   const [isLastSlide, setIsLastSlide] = useState(false);
   return (
-    <div>
+    <div className={styles.onBoarding__page}>
       <Swiper
         modules={[Navigation, Pagination, A11y]}
         spaceBetween={50}
@@ -176,7 +176,6 @@ export default function OnBoardingPage({
           </p>{' '}
         </SwiperSlide>
       </Swiper>
-
       <div
         className={styles.onBoarding__button}
         onClick={() => setIsOnboardingOpen(false)}

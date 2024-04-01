@@ -25,6 +25,7 @@ type UserType = {
   last_name: string;
   account_balance: number;
   cashback: number;
+  current_month_expenses: number;
   subscriptions: MyCardType[];
 };
 

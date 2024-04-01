@@ -14,6 +14,7 @@ const initialState: UserState = {
     account_balance: 0,
     cashback: 0,
     subscriptions: [],
+    current_month_expenses: 0,
   },
 };
 

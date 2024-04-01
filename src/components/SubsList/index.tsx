@@ -25,15 +25,16 @@ export default function SubsList({
   const handleCardClick = (id: number) => {
     if (attachment === 'myActive' && setSelectedActiveCard) {
       setSelectedActiveCard(id);
+      openModal();
     }
     if (attachment === 'myInActive' && setSelectedInActiveCard) {
       setSelectedInActiveCard(id);
+      openModal();
     }
     if (attachment === 'offer') {
       setCurrentCoverId(id);
       navigate(`/available-subs/${id}`);
     }
-    openModal();
   };
 
   const definePeriodTitle = (sub: MyCardType) => {

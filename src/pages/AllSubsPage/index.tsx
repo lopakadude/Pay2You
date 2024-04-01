@@ -16,6 +16,8 @@ import ActiveCardInfo from '../../components/ActiveCardInfo';
 import InActiveCardInfo from '../../components/InActiveCardInfo';
 import Confirm from '../../components/Confirm';
 import OnBoardingPage from '../../components/Obnoarding/Onboarding';
+import Popup from '../../components/Popup';
+import ProlongationCancel from '../../components/ProlongationCancel';
 
 export default function AllSubsPage() {
   const navigate = useNavigate();
@@ -37,6 +39,7 @@ export default function AllSubsPage() {
   const [selectedActiveCard, setSelectedActiveCard] = useState(0);
   const [selectedInActiveCard, setSelectedInActiveCard] = useState(0);
   const [isOnboardingOpen, setIsOnboardingOpen] = useState(false);
+  const isPopupOpened = useAppSelector((state) => state.popup.isPopupOpened);
 
   useEffect(() => {
     triggerUser()
@@ -47,9 +50,11 @@ export default function AllSubsPage() {
       .then((covers) => setCovers(covers.results));
   }, []);
 
+  console.log(user);
+
   return (
     <section className={styles.allSubsPage}>
-      {!isOnboardingOpen ? (
+      {!isOnboardingOpen && user ? (
         <div>
           <Navbar />
           <div className={styles.allSubsPage__header}>
@@ -66,14 +71,14 @@ export default function AllSubsPage() {
               Потрачено в марте
               <span className={styles.allSubsPage__balanceValue}>
                 {' '}
-                698 &#8381;
+                {user.current_month_expenses || 0} &#8381;
               </span>
             </li>
             <li className={styles.allSubsPage__balanceDescription}>
               Начислен кешбэк за март
               <span className={styles.allSubsPage__cashbackValue}>
                 {' '}
-                69 &#8381;
+                {user.cashback || 0} &#8381;
               </span>
             </li>
             <button className={styles.allSubsPage__balanceLink}>
@@ -157,12 +162,15 @@ export default function AllSubsPage() {
                 />
               )
             : null}
-          {selectedInActiveCard !== 0 ? isModalOpen && (
-            <Modal
-              setSelectedInActiveCard={setSelectedInActiveCard}
-              content={<InActiveCardInfo cardId={selectedInActiveCard} />}
-            />
-          ) : null}
+          {selectedInActiveCard !== 0
+            ? isModalOpen && (
+                <Modal
+                  setSelectedInActiveCard={setSelectedInActiveCard}
+                  content={<InActiveCardInfo cardId={selectedInActiveCard} />}
+                />
+              )
+            : null}
+          {isPopupOpened && <Popup content={<ProlongationCancel />} />}
         </div>
       ) : (
         <OnBoardingPage setIsOnboardingOpen={setIsOnboardingOpen} />

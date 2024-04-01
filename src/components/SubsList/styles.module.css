@@ -141,6 +141,7 @@
   border: 1px solid var(--dark-primary-800);
   border-radius: 12px;
   background-color: #fff;
+  width: max-content;
 }
 
 .subList__itemCashBack {
