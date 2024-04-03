@@ -16,6 +16,7 @@ export default function ActiveSubsPage() {
   const isConfirmOpen = useAppSelector(
     (state) => state.confirm.isConfirmOpened
   );
+  
   const user = useAppSelector((state) => state.user.currentUser);
   const defineContent = () => {
     if (user) {

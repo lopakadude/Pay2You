@@ -78,3 +78,21 @@
   font-weight: 500;
   color: var(--light-primary-600);
 }
+
+.activeCardInfo__prolongationValue {
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 500;
+  color: var(--light-type-medium);
+  padding: 0;
+  margin: 0 0 12px 0;
+}
+
+.activeCardInfo__prolongationDescription {
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 500;
+  color: var(--light-type-medium);
+  padding: 0;
+  margin: 0 0 60px 0;
+}

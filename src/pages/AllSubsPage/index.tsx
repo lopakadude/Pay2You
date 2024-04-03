@@ -67,15 +67,19 @@ export default function AllSubsPage() {
             </button>
           </div>
           <ul className={styles.allSubsPage__balance}>
-            <li className={styles.allSubsPage__balanceDescription}>
-              Потрачено в марте
+            <li className={styles.allSubsPage__balanceItem}>
+              <p className={styles.allSubsPage__balanceDescription}>
+                Потрачено в марте
+              </p>
               <span className={styles.allSubsPage__balanceValue}>
                 {' '}
                 {user.current_month_expenses || 0} &#8381;
               </span>
             </li>
-            <li className={styles.allSubsPage__balanceDescription}>
-              Начислен кешбэк за март
+            <li className={styles.allSubsPage__balanceItem}>
+              <p className={styles.allSubsPage__balanceDescription}>
+                Начислен кешбэк за март
+              </p>
               <span className={styles.allSubsPage__cashbackValue}>
                 {' '}
                 {user.cashback || 0} &#8381;
@@ -89,13 +93,15 @@ export default function AllSubsPage() {
             {activeSubs && activeSubs.length !== 0 && (
               <div>
                 <h2 className={styles.allSubsPage__subTitle}>
-                  Активные подписки: {activeSubs.length}
+                  Активные подписки{' '}
+                  {activeSubs.length > 3 ? `: ${activeSubs.length}` : ''}
                 </h2>
                 <SubsList
                   data={activeSubs.slice(0, 3)}
                   type="flex"
                   setSelectedActiveCard={setSelectedActiveCard}
                   attachment="myActive"
+                  colorDescription="primary"
                 />
                 {activeSubs.length > 3 && (
                   <div
@@ -110,7 +116,8 @@ export default function AllSubsPage() {
             {inActiveSubs && inActiveSubs.length !== 0 && (
               <div>
                 <h2 className={styles.allSubsPage__subTitle}>
-                  Неактивные подписки: {inActiveSubs.length}
+                  Неактивные подписки{' '}
+                  {inActiveSubs.length > 3 ? `: ${inActiveSubs.length}` : ''}
                 </h2>
                 <SubsList
                   data={inActiveSubs.slice(0, 3)}
@@ -136,6 +143,7 @@ export default function AllSubsPage() {
                   data={currentCovers.slice(0, 2)}
                   type="grid"
                   attachment="offer"
+                  colorDescription="secondary"
                 />
                 {currentCovers.length > 2 && (
                   <div

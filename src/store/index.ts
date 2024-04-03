@@ -8,6 +8,10 @@ import { userReducer } from './pay2u/user.slice';
 import { currentCardReducer } from './pay2u/myCard.slice';
 import { coversReducer } from './pay2u/covers.slice';
 import { currentCoverIdReducer } from './pay2u/coverCard.slice';
+import { newSubReducer } from './pay2u/newSub.slice';
+import { successFormReducer } from './pay2u/successForm.slice';
+import { failFormReducer } from './pay2u/failForm.slice';
+import { errorReducer } from './pay2u/error.slice';
 
 export const store = configureStore({
   reducer: {
@@ -20,6 +24,10 @@ export const store = configureStore({
     currentCard: currentCardReducer,
     covers: coversReducer,
     currentCoverId: currentCoverIdReducer,
+    newSub: newSubReducer,
+    successForm: successFormReducer,
+    failForm: failFormReducer,
+    error: errorReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(api.middleware),

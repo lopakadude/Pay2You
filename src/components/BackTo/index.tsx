@@ -39,7 +39,7 @@ export default function BackTo({
       return 'Предложения партнёров';
     }
     if (location.pathname === '/all-subs') {
-      return 'Раздел банковского приложения';
+      return 'На главную';
     }
   }
 

@@ -85,6 +85,9 @@
   color: var(--light-type-medium);
   padding: 0;
   margin: 0;
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 500;
   grid-column: 1;
   grid-row: 3;
 }

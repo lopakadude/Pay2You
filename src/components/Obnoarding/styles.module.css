@@ -1,4 +1,8 @@
-.slide {
+.onBoarding__page {
+  height: calc(100vh - 75px);
+}
+
+.swiper {
   position: relative;
 }
 
@@ -8,7 +12,7 @@
   font-weight: 600;
   text-align: center;
   padding: 0;
-  margin: 64px 0 456px 0;
+  margin: 64px 0 376px 0;
 }
 
 .slide__description {
@@ -143,3 +147,19 @@
   left: 106px;
   right: 106px;
 }
+
+.swiper__buttonsNavigationContainer {
+  width: 343px;
+  padding-left: 55.25px;
+  padding-right: 55.25px;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-between;
+  margin: 0 auto 24px;
+}
+
+.swiper__arrow {
+  border: none;
+  background-color: transparent;
+}
+

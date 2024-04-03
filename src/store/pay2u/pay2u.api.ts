@@ -73,6 +73,13 @@ export const api = createApi({
       }),
       invalidatesTags: ['User'],
     }),
+    postNewActiveSub: build.mutation<any, any>({
+      query: (data) => ({
+        url: 'v1/subscriptions/',
+        method: 'POST',
+        body: data,
+      }),
+    }),
   }),
 });
 
@@ -84,4 +91,5 @@ export const {
   useLazyGetCoverInfoQuery,
   usePatchAutorenewalFalseCardMutation,
   usePatchAutorenewalTrueCardMutation,
+  usePostNewActiveSubMutation,
 } = api;

@@ -10,9 +10,11 @@ import {
   AvailableSubsPage,
   AllSubsPage,
   NotFoundPage,
-  WastesPage,
+  // WastesPage,
   CoverPage,
   LoginPage,
+  SubRulesPage,
+  PrivacyPolicyPage,
 } from './components';
 
 import Layout from '../components/Layout';
@@ -27,8 +29,10 @@ const router = createBrowserRouter(
           <Route path="inactive-subs" element={<InActiveSubsPage />} />
           <Route path="available-subs" element={<AvailableSubsPage />} />
           <Route path="all-subs" element={<AllSubsPage />} />
-          <Route path="wastes" element={<WastesPage />} />
+          {/* <Route path="wastes" element={<WastesPage />} /> */}
           <Route path="available-subs/:id" element={<CoverPage />} />
+          <Route path="sub-rules" element={<SubRulesPage />} />
+          <Route path="privacy-policy" element={<PrivacyPolicyPage />} />
         </Route>
         <Route path="login" element={<LoginPage />} />
       </Route>

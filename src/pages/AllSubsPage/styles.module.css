@@ -41,12 +41,20 @@
   border-radius: 16px;
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 2px;
   position: relative;
   box-shadow: 0px 3px 6px 0px rgba(148, 163, 184, 0.15);
 }
 
+.allSubsPage__balanceItem {
+  display: flex;
+  align-items: center;
+  column-gap: 8px;
+}
+
 .allSubsPage__balanceDescription {
+  margin: 0;
+  padding: 0;
   font-size: 14px;
   line-height: 20px;
   font-weight: 500;
@@ -81,6 +89,7 @@
 }
 
 .allSubsPage__subTitle {
+  color: var(--light-type-high);
   font-size: 16px;
   line-height: 24px;
   font-weight: 600;

@@ -25,6 +25,8 @@ export default function ActiveCardInfo({ cardId }: { cardId: number}) {
     .then((card) => setCurrentCard(card))
   }, []);
 
+  console.log(card)
+
   return (
     <section className={styles.activeCardInfo}>
       {card && (
@@ -89,6 +91,7 @@ export default function ActiveCardInfo({ cardId }: { cardId: number}) {
           >
             Скопировать промокод и перейти на сайт
           </a>
+          {card.autorenewal === false && <p>Автопродление отключено</p>}
           <p className={styles.activeCardInfo__prolongationValue}>
             Ежемесячное автопродление
           </p>
@@ -100,7 +103,7 @@ export default function ActiveCardInfo({ cardId }: { cardId: number}) {
               openConfirm();
             }}
           >
-            <ActionButton title="Отключить автопродление" />
+            <ActionButton title={card.autorenewal ? 'Отключить автопродление' : 'Возобновить автопродление'} />
           </div>
         </div>
       )}

@@ -1,0 +1,78 @@
+.successPage {
+  background-color: #fff;
+  height: calc(100vh - 70px);
+  width: 375px;
+  padding-left: 16px;
+  padding-right: 16px;
+  padding-top: 126px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+}
+
+.successPage__logo {
+  width: 60px;
+  height: 60px;
+}
+
+.successPage__textSecondary {
+  padding: 0;
+  margin: 0;
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 400;
+  color: var(--light-type-medium);
+}
+
+.successPage__textPrimary {
+  padding: 0;
+  margin: 0;
+  font-size: 24px;
+  line-height: 32px;
+  font-weight: 500;
+  color: var(--light-type-high);
+}
+
+.successPage__title {
+  margin: 24px 0 12px 0;
+}
+
+.successPage__promocode {
+  margin: 48px 0 12px 0;
+}
+
+.successPage__textContainer {
+  display: flex;
+  flex-direction: column;
+  row-gap: 8px;
+}
+
+.successPage__linkToService {
+  display: flex;
+  align-items: center;
+  width: 343px;
+  height: 44px;
+  padding: 10px 20px;
+  box-sizing: border-box;
+  background-color: var(--light-primary-600);
+  text-decoration: none;
+  border-radius: 8px;
+  margin: 28px 0 24px 0;
+}
+
+.successPage__copyIcon {
+  margin-right: 20px;
+}
+
+.successPage__linkText {
+  color: #fff;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 24px;
+  padding: 0;
+  margin: 0;
+}
+
+.successPage__actionButton {
+  margin-top: auto;
+}

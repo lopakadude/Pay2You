@@ -16,6 +16,7 @@ type MyCardType = {
   promocode: string;
   is_subscribed?: boolean;
   preview: string;
+  autorenewal: boolean;
 };
 
 type UserType = {

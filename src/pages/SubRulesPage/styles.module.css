@@ -1,0 +1,21 @@
+.subRules {
+  width: 375px;
+}
+
+.subRules__title {
+  font-size: 20px;
+  line-height: 30px;
+  font-weight: 500;
+  color: var(--light-type-high);
+  padding: 0;
+  margin: 20px 0 16px 16px;
+}
+
+.subRules__text {
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 400;
+  color: var(--light-type-medium);
+  margin: 0;
+  padding: 0 16px 0 16px;
+}

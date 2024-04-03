@@ -8,6 +8,10 @@ import { userActions } from '../store/pay2u/user.slice';
 import { currentCardActions } from '../store/pay2u/myCard.slice';
 import { coversActions } from '../store/pay2u/covers.slice';
 import { currentCoverIdActions } from '../store/pay2u/coverCard.slice';
+import { newSubActions } from '../store/pay2u/newSub.slice';
+import { successFormActions } from '../store/pay2u/successForm.slice';
+import { failFormActions } from '../store/pay2u/failForm.slice';
+import { errorActions } from '../store/pay2u/error.slice';
 
 const actions = {
   ...authActions,
@@ -18,6 +22,10 @@ const actions = {
   ...currentCardActions,
   ...coversActions,
   ...currentCoverIdActions,
+  ...newSubActions,
+  ...successFormActions,
+  ...failFormActions,
+  ...errorActions,
 };
 
 export const useActions = () => {

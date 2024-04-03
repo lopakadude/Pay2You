@@ -1,12 +1,12 @@
 /* eslint-disable no-param-reassign */
 import { createSlice } from '@reduxjs/toolkit';
 
-interface CardState {
-  currentCard: MyCardType;
+interface newSubState {
+  newSub: MyCardType;
 }
 
-const initialState: CardState = {
-  currentCard: {
+const initialState: newSubState = {
+  newSub: {
     id: 0,
     name: '',
     end_date: '',
@@ -27,15 +27,15 @@ const initialState: CardState = {
   },
 };
 
-export const currentCardSlice = createSlice({
-  name: 'currentCard',
+export const newSubSlice = createSlice({
+  name: 'newSub',
   initialState,
   reducers: {
-    setCurrentCard: (state, action) => {
-      state.currentCard = action.payload;
+    setNewSub: (state, action) => {
+      state.newSub = action.payload;
     },
   },
 });
 
-export const currentCardActions = currentCardSlice.actions;
-export const currentCardReducer = currentCardSlice.reducer;
+export const newSubActions = newSubSlice.actions;
+export const newSubReducer = newSubSlice.reducer;

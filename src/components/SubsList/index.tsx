@@ -36,21 +36,21 @@ export default function SubsList({
       navigate(`/available-subs/${id}`);
     }
   };
-
+  
   const definePeriodTitle = (sub: MyCardType) => {
     if (sub.period === 'monthly') {
-      return 'месяц';
+      return 'мес';
     } else if (sub.period === 'annual') {
       return 'год';
     }
   };
 
-  function leftDays(date: string): number {
-    const [dd, mm, yyyy]: number[] = date.split('.').map(Number);
-    const Till: Date = new Date(yyyy, mm - 1, dd);
-    const Now: Date = new Date();
-    return Math.floor((Till.getTime() - Now.getTime()) / 864e5);
-  }
+  // function leftDays(date: string): number {
+  //   const [dd, mm, yyyy]: number[] = date.split('.').map(Number);
+  //   const Till: Date = new Date(yyyy, mm - 1, dd);
+  //   const Now: Date = new Date();
+  //   return Math.floor((Till.getTime() - Now.getTime()) / 864e5);
+  // }
 
   return (
     <ul
@@ -92,17 +92,18 @@ export default function SubsList({
           )}
           {type === 'flex' &&
             colorSсheme !== 'none-active' &&
-            location.pathname !== '/all-subs' && (
+            sub.autorenewal === true && (
               <p className={styles.subList__itemDate}>
                 до {formatDate(sub.end_date, '2-digit', false)}
               </p>
             )}
-          {type === 'flex' && location.pathname === '/all-subs' && (
-            <p className={styles.subList__itemDate}>
-              осталось {leftDays(formatDate(sub.end_date, '2-digit', false))}{' '}
-              дней
-            </p>
-          )}
+          {type === 'flex' &&
+            colorSсheme !== 'none-active' &&
+            sub.autorenewal === false && (
+              <p className={styles.subList__itemDate}>
+                до {formatDate(sub.end_date, '2-digit', false)}
+              </p>
+            )}
           {type === 'flex' && colorSсheme === 'none-active' && (
             <p className={styles.subList__itemDate}>
               истекла {formatDate(sub.end_date, '2-digit', false)}

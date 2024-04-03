@@ -110,13 +110,40 @@
   margin-bottom: 60px;
 }
 
+.subscriptionForm__checkbox {
+  display: none;
+}
+
+.subscriptionForm__checkboxLabel {
+  position: relative;
+}
+
+.subscriptionForm__checkboxLabel::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 20px;
+  height: 20px;
+  background-color: transparent;
+  border-radius: 2px;
+  border: 1px solid var(--light-neutrals-300);
+  box-sizing: border-box;
+}
+
+.subscriptionForm__checkbox:checked + .subscriptionForm__checkboxLabel:before {
+  border-color: var(--light-primary-600);
+  background-color: var(--light-primary-600);
+  background-image: url(../../assets/CheckWhite.svg);
+}
+
 .subscriptionForm__rulesText {
   font-size: 14px;
   line-height: 20px;
   font-weight: 400;
   color: var(--light-type-medium);
   padding: 0;
-  margin: 0 0 0 8px;
+  margin: 0 0 0 28px;
 }
 
 .subscriptionForm__linkToRules {
@@ -134,4 +161,27 @@
 
 .subscriptionForm__personalDataLink {
   color: var(--light-type-medium);
+}
+
+.subccriptionForm__title {
+  font-size: 24px;
+  line-height: 32px;
+  font-weight: 500;
+  color: var(--light-type-high);
+  padding: 0;
+  margin: 0 0 20px 0;
+}
+
+.subccriptionForm__prolongationText {
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 500;
+  color: var(--light-type-medium);
+  padding: 0;
+  margin: 20px 0 60px 0;
+}
+
+
+.newSubscription__logo {
+  width: 60px;height: 60px;
 }

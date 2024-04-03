@@ -1,13 +1,14 @@
 import { lazy } from 'react';
-
 const AllSubsPage = lazy(() => import('../pages/AllSubsPage'));
 const ActiveSubsPage = lazy(() => import('../pages/ActiveSubsPage'));
 const InActiveSubsPage = lazy(() => import('../pages/InActiveSubsPage'));
 const AvailableSubsPage = lazy(() => import('../pages/AvailableSubsPage'));
 const NotFoundPage = lazy(() => import('../pages/NotFoundPage'));
-const WastesPage = lazy(() => import('../pages/WastesPage/'));
+// const WastesPage = lazy(() => import('../pages/WastesPage/'));
 const CoverPage = lazy(() => import('../pages/CoverPage'));
 const LoginPage = lazy(() => import('../pages/LoginPage'));
+const SubRulesPage = lazy(() => import('../pages/SubRulesPage'));
+const PrivacyPolicyPage = lazy(() => import('../pages/PrivacyPolicyPage')); 
 
 export {
   ActiveSubsPage,
@@ -15,7 +16,9 @@ export {
   AvailableSubsPage,
   NotFoundPage,
   AllSubsPage,
-  WastesPage,
+  // WastesPage,
   CoverPage,
-  LoginPage
+  LoginPage,
+  SubRulesPage,
+  PrivacyPolicyPage,
 };

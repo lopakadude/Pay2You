@@ -18,7 +18,7 @@ import spoti from '../../assets/Spotify40.svg';
 import start from '../../assets/Start32.svg';
 import litres from '../../assets/litres24.svg';
 import activeCard from '../../assets/Subs_activeFor3.svg';
-import { Swiper, SwiperSlide } from 'swiper/react';
+import { Swiper, SwiperSlide, useSwiper } from 'swiper/react';
 import { Navigation, Pagination, A11y } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/navigation';
@@ -26,6 +26,10 @@ import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
 import ActionButton from '../ActionButton';
 import { useState } from 'react';
+import backArrow from '../../assets/BackArrowOnboarding.svg';
+import forwardArrow from '../../assets/ForwardArrowOnboarding.svg';
+import nulBackArrow from '../../assets/nulSaturaionArrowBack.svg';
+import nulForwardArrow from '../../assets/nulSaturasionArrowForward.svg';
 
 export default function OnBoardingPage({
   setIsOnboardingOpen,
@@ -33,22 +37,45 @@ export default function OnBoardingPage({
   setIsOnboardingOpen: (isOnboardingOpen: boolean) => void;
 }) {
   const [isLastSlide, setIsLastSlide] = useState(false);
+
+
+const SwiperButtonNext = ({ children }: { children: JSX.Element }) => {
+  const swiper = useSwiper();
+  return (
+    <button
+      className={styles.swiper__arrow}
+      onClick={() => swiper.slideNext()}
+    >
+      {children}
+    </button>
+  );
+};
+const SwiperButtonPrev = ({ children } : {children: JSX.Element}) => {
+  const swiper = useSwiper();
+  return (
+    <button
+      className={styles.swiper__arrow}
+      onClick={() => swiper.slidePrev()}
+    >
+      {children}
+    </button>
+  );
+};
+
   return (
     <div className={styles.onBoarding__page}>
       <Swiper
         modules={[Navigation, Pagination, A11y]}
         spaceBetween={50}
         slidesPerView={1}
-        navigation
         pagination
-        onSwiper={(swiper) => console.log(swiper)}
         onSlideChange={() => console.log('slide change')}
         className={styles.swiper}
         onReachEnd={() => {
           setIsLastSlide(true);
         }}
       >
-        <SwiperSlide className="slide">
+        <SwiperSlide className={styles.slide}>
           <h2 className={styles.swiper__headerSlide}>Добро пожаловать</h2>
           <img
             src={human1}
@@ -85,6 +112,14 @@ export default function OnBoardingPage({
             alt="иконка литрес"
             className={`${styles.slide__img} ${styles.slide__litres}`}
           />
+          <div className={styles.swiper__buttonsNavigationContainer}>
+            <SwiperButtonPrev>
+              <img src={nulBackArrow} alt="назад" />
+            </SwiperButtonPrev>
+            <SwiperButtonNext>
+              <img src={forwardArrow} alt="вперед" />
+            </SwiperButtonNext>
+          </div>
           <p className={styles.slide__description}>
             Управляйте подписками по-новому:выгоднее, проще и в одном месте
           </p>
@@ -101,6 +136,14 @@ export default function OnBoardingPage({
             alt="иконка иви"
             className={`${styles.slide__img} ${styles.slide__iviCard}`}
           />
+          <div className={styles.swiper__buttonsNavigationContainer}>
+            <SwiperButtonPrev>
+              <img src={backArrow} alt="назад" />
+            </SwiperButtonPrev>
+            <SwiperButtonNext>
+              <img src={forwardArrow} alt="вперед" />
+            </SwiperButtonNext>
+          </div>
           <p className={styles.slide__description}>
             Выберите понравившуюся подписку и получайте кешбэк. Если подписка
             уже есть, переподключите её у нас. Быстро и без потерь.
@@ -123,6 +166,14 @@ export default function OnBoardingPage({
             alt="иконка руки"
             className={`${styles.slide__img} ${styles.slide__iviCardHand}`}
           />
+          <div className={styles.swiper__buttonsNavigationContainer}>
+            <SwiperButtonPrev>
+              <img src={backArrow} alt="назад" />
+            </SwiperButtonPrev>
+            <SwiperButtonNext>
+              <img src={forwardArrow} alt="вперед" />
+            </SwiperButtonNext>
+          </div>
           <p className={styles.slide__description}>
             Всё прозрачно. Вы сразу видите все тарифы и размер кешбэка
           </p>
@@ -134,6 +185,14 @@ export default function OnBoardingPage({
             alt="пример подписки"
             className={`${styles.slide__img} ${styles.slide__slide4}`}
           />
+          <div className={styles.swiper__buttonsNavigationContainer}>
+            <SwiperButtonPrev>
+              <img src={backArrow} alt="назад" />
+            </SwiperButtonPrev>
+            <SwiperButtonNext>
+              <img src={forwardArrow} alt="вперед" />
+            </SwiperButtonNext>
+          </div>
           <p className={styles.slide__description}>
             Ознакомьтесь с условиями подписки и, если всё устраивает, переходите
             к оплате
@@ -171,6 +230,14 @@ export default function OnBoardingPage({
             alt="пример подписки"
             className={`${styles.slide__img} ${styles.slide__slide5YaPlusCard}`}
           />
+          <div className={styles.swiper__buttonsNavigationContainer}>
+            <SwiperButtonPrev>
+              <img src={backArrow} alt="назад" />
+            </SwiperButtonPrev>
+            <SwiperButtonNext>
+              <img src={nulForwardArrow} alt="вперед" />
+            </SwiperButtonNext>
+          </div>
           <p className={styles.slide__description}>
             Присоединяйтесь к нам: пользуйтесь подписками и получайте выгоду
           </p>{' '}
