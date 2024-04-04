@@ -10,7 +10,7 @@ export default function NotFoundPage() {
   const isLoggedIn = useAppSelector(
     (state: RootState) => state.auth.isLoggedIn
   );
-    const number = '0123456789';
+    const number = '555';
       const { setLoggedIn } = useActions();
       const [login] = useLoginMutation();
       const navigate = useNavigate(); 

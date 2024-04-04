@@ -36,7 +36,7 @@ export default function SubsList({
       navigate(`/available-subs/${id}`);
     }
   };
-  
+
   const definePeriodTitle = (sub: MyCardType) => {
     if (sub.period === 'monthly') {
       return 'мес';
@@ -90,20 +90,11 @@ export default function SubsList({
               {attachment === 'offer' ? sub.preview : sub.description}
             </p>
           )}
-          {type === 'flex' &&
-            colorSсheme !== 'none-active' &&
-            sub.autorenewal === true && (
-              <p className={styles.subList__itemDate}>
-                до {formatDate(sub.end_date, '2-digit', false)}
-              </p>
-            )}
-          {type === 'flex' &&
-            colorSсheme !== 'none-active' &&
-            sub.autorenewal === false && (
-              <p className={styles.subList__itemDate}>
-                до {formatDate(sub.end_date, '2-digit', false)}
-              </p>
-            )}
+          {type === 'flex' && colorSсheme !== 'none-active' && (
+            <p className={styles.subList__itemDate}>
+              до {formatDate(sub.end_date, '2-digit', false)}
+            </p>
+          )}
           {type === 'flex' && colorSсheme === 'none-active' && (
             <p className={styles.subList__itemDate}>
               истекла {formatDate(sub.end_date, '2-digit', false)}

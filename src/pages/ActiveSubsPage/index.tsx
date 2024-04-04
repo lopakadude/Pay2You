@@ -1,13 +1,15 @@
 import styles from './styles.module.css';
 import Navbar from '../../components/Navbar/index';
 import SubsList from '../../components/SubsList/index';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Modal from '../../components/Modal';
 import ActiveCardInfo from '../../components/ActiveCardInfo';
 import { useAppSelector } from '../../hooks/redux';
 import Confirm from '../../components/Confirm';
 import Popup from '../../components/Popup';
 import ProlongationCancel from '../../components/ProlongationCancel';
+import { useLazyGetUserQuery } from '../../store/pay2u/pay2u.api';
+import { useActions } from '../../hooks/actions';
 
 export default function ActiveSubsPage() {
   const [selectedActiveCard, setSelectedActiveCard] = useState(0);
@@ -16,8 +18,10 @@ export default function ActiveSubsPage() {
   const isConfirmOpen = useAppSelector(
     (state) => state.confirm.isConfirmOpened
   );
+    const { setCurrentUser } = useActions();
   
   const user = useAppSelector((state) => state.user.currentUser);
+    const [triggerUser] = useLazyGetUserQuery();
   const defineContent = () => {
     if (user) {
       return user.subscriptions.filter((mySub) => mySub.is_active === true);
@@ -25,6 +29,14 @@ export default function ActiveSubsPage() {
       return [];
     }
   };
+
+  useEffect(() => {
+    triggerUser()
+      .unwrap()
+      .then((user) => setCurrentUser(user));
+  }, []);
+
+  console.log(user)
 
   return (
     <section className={styles.activeSubsPage}>

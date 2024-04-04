@@ -84,6 +84,7 @@ export default function ActiveCardInfo({ cardId }: { cardId: number}) {
           </ul>
           <a
             href={card.service_link}
+            target='_blank'
             onClick={() => {
               copyText(card.promocode);
             }}

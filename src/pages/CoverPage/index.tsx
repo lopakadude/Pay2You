@@ -224,14 +224,17 @@ export default function CoverPage() {
                 <p className={styles.coverCard__itemNumber}>5</p>
               </li>
             </ul>
-            <div
-              className={styles.coverCard__actionButton}
-              onClick={() => {
-                handleSubButtonClick(selectedCoverCard);
-              }}
-            >
-              <ActionButton active title="Подключить" />
-            </div>
+            {!selectedCoverCard.is_subscribed && (
+              <div
+                className={styles.coverCard__actionButton}
+                onClick={() => {
+                  handleSubButtonClick(selectedCoverCard);
+                }}
+              >
+                <ActionButton active title="Подключить" />
+              </div>
+            )}
+
             <a
               className={styles.coverCard__offer}
               href={currentCover.service_link}
@@ -250,9 +253,7 @@ export default function CoverPage() {
       {isPopupOpened && currentCover && (
         <Popup content={contentPopup(currentCover)} />
       )}
-      {isSuccesFormSubmitted && (
-        <SuccessPage data={newSub} />
-      )}
+      {isSuccesFormSubmitted && <SuccessPage data={newSub} />}
       {isFailFormSubmitted && <FailPage data={error} />}
     </section>
   );

@@ -48,6 +48,11 @@ export const api = createApi({
         url: 'v1/covers/',
       }),
     }),
+    getCategories: build.query<{ id: number; name: string }[], void>({
+      query: () => ({
+        url: 'v1/categories/',
+      }),
+    }),
     getCoverInfo: build.query<CoverCardType, number>({
       query: (id) => ({
         url: `v1/covers/${id}/`,
@@ -79,6 +84,7 @@ export const api = createApi({
         method: 'POST',
         body: data,
       }),
+      invalidatesTags: ['User'],
     }),
   }),
 });
@@ -92,4 +98,5 @@ export const {
   usePatchAutorenewalFalseCardMutation,
   usePatchAutorenewalTrueCardMutation,
   usePostNewActiveSubMutation,
+  useGetCategoriesQuery,
 } = api;

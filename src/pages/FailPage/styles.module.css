@@ -1,8 +1,45 @@
-.notFound {
-  font-size: 45px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
+.failPage {
   width: var(--max-desktop-width);
+  padding-right: 16px;
+  padding-left: 16px;
+  box-sizing: border-box;
+}
+
+.failPage__container {
+  display: flex;
+  align-items: start;
+  justify-content: center;
+  flex-direction: column;
+  height: calc(100vh - 70px);
+}
+
+.failPage__alertIcon {
+  width: 60px;
+  height: 60px;
+  margin-top: 200px;
+}
+
+.failPage__title {
+  font-size: 24px;
+  line-height: 32px;
+  font-weight: 500;
+  padding: 0;
+  margin: 24px 0 12px 0;
+}
+
+.failPage__description {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+  color: var(--light-type-medium);
+  padding: 0;
+  margin: 0 0 40px 0;
+}
+
+.failPage__payButton {
+  width: 114px;
+}
+
+.failPage__buttonToPartner {
+  margin-top: auto;
 }

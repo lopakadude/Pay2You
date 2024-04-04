@@ -19,6 +19,7 @@ export default function Confirm() {
       closeModal();
       closeConfirm();
       openPopup();
+      console.log(card)
     } catch (error) { console.log(error)}
   }
 
