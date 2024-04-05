@@ -5,16 +5,16 @@ import { useActions } from '../../hooks/actions';
 import { useLazyGetMyCardInfoQuery } from '../../store/pay2u/pay2u.api';
 import { useAppSelector } from '../../hooks/redux';
 import { formatDate } from '../../utils/formatDate';
-import { useEffect, useState } from 'react';
+import { useEffect,useState } from 'react';
 import SubscriptionForm from '../SubscriptionForm';
+import { useNavigate } from 'react-router-dom';
 
 export default function InActiveCardInfo({ cardId }: { cardId: number }) {
-  const { setCurrentCard } = useActions();
+  const { setCurrentCard, setCurrentCoverId } = useActions();
   const [triggerCard] = useLazyGetMyCardInfoQuery();
   const [isResumePaymentOpen, setIsResumePaymentOpen] = useState(false);
-  const user = useAppSelector((state) => state.user.currentUser);
   const card = useAppSelector((state) => state.currentCard.currentCard);
-
+  const navigate = useNavigate();
 
   function handleButtonClick() {
     setIsResumePaymentOpen(true);
@@ -27,6 +27,12 @@ export default function InActiveCardInfo({ cardId }: { cardId: number }) {
   }, []);
 
   console.log(card)
+
+  function openCover(coverId: number) {
+    setCurrentCoverId(coverId);
+    navigate(`/available-subs/${coverId}`);
+
+  }
 
   return (
     <section className={styles.inActiveCardInfo}>
@@ -47,9 +53,9 @@ export default function InActiveCardInfo({ cardId }: { cardId: number }) {
               <p className={styles.inActiveCardInfo__itemDescription}>
                 Подписка {card.name}
               </p>
-              <p className={styles.inActiveCardInfo__itemValue}>
-                {user.phone_number}
-              </p>
+              <a className={styles.inActiveCardInfo__linkToCover} onClick={() => {openCover(card.cover)}}>
+                Подобрать тариф
+              </a>
             </li>
             <li className={styles.inActiveCardInfo__listItem}>
               <p className={styles.inActiveCardInfo__itemDescription}>
