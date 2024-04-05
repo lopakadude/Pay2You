@@ -8,7 +8,6 @@ import {
   useLazyGetCoversQuery,
   useLazyGetUserQuery,
 } from '../../store/pay2u/pay2u.api';
-import arrowRight from '../../assets/chevron-right.svg';
 import { useAppSelector } from '../../hooks/redux';
 import SubsList from '../../components/SubsList';
 import Modal from '../../components/Modal';
@@ -108,9 +107,6 @@ export default function AllSubsPage() {
                   {user.cashback || 0} &#8381;
                 </span>
               </li>
-              <button className={styles.allSubsPage__balanceLink}>
-                <img src={arrowRight} alt="перейти" />
-              </button>
             </ul>
             <div className={styles.allSubsPage__subscriptionsLists}>
               {activeSubs && activeSubs.length !== 0 && (

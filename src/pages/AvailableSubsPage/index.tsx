@@ -5,6 +5,7 @@ import styles from './styles.module.css';
 import {
   useGetCategoriesQuery,
   useLazyGetCoversQuery,
+  useLazyGetCoversByCategoryQuery,
 } from '../../store/pay2u/pay2u.api';
 import { useEffect, useState } from 'react';
 import { useActions } from '../../hooks/actions';
@@ -14,28 +15,29 @@ export default function AvailableSubsPage() {
   const [triggerCovers] = useLazyGetCoversQuery();
   const { setCovers } = useActions();
   const { data: categories } = useGetCategoriesQuery();
-  const [activeCategory, setActiveCategory] = useState(0);
+  const [activeCategory, setActiveCategory] = useState('Все');
+  const [triggerCoversByCategory] = useLazyGetCoversByCategoryQuery();
 
-  console.log(currentCovers);
+  function filterCovers(activeCategory: string) {
+    if (activeCategory === 'Все' && currentCovers) {
+      triggerCovers()
+        .unwrap()
+        .then((covers) => setCovers(covers.results));
+    }
+    if (activeCategory !== 'Все' && currentCovers) {
+      triggerCoversByCategory(activeCategory)
+        .unwrap()
+        .then((covers) => setCovers(covers.results));
+    } else {
+      return [];
+    }
+  }
 
   useEffect(() => {
     triggerCovers()
       .unwrap()
       .then((covers) => setCovers(covers.results));
   }, []);
-
-  function filterCovers() {
-    if (activeCategory === 0 && currentCovers) {
-      return currentCovers;
-    }
-    if (currentCovers) {
-      return currentCovers.filter(
-        (cover) => cover.categories[0] === activeCategory
-      );
-    } else {
-      return [];
-    }
-  }
 
   return (
     <section className={styles.availableSubsPage}>
@@ -44,22 +46,28 @@ export default function AvailableSubsPage() {
       <ul className={styles.availableSubsPage__categoriesList}>
         <li
           className={`${styles.availableSubsPage__category} ${
-            activeCategory === 0
+            activeCategory === 'Все'
               ? styles.availableSubsPage__category_active
               : ''
           }`}
-          onClick={() => setActiveCategory(0)}
+          onClick={() => {
+            setActiveCategory('Все');
+            filterCovers('Все');
+          }}
         >
           Все
         </li>
         {categories?.map((category) => (
           <li
             className={`${styles.availableSubsPage__category} ${
-              activeCategory === category.id
+              activeCategory === category.name
                 ? styles.availableSubsPage__category_active
                 : ''
             }`}
-            onClick={() => setActiveCategory(category.id)}
+            onClick={() => {
+              setActiveCategory(category.name);
+              filterCovers(category.name);
+            }}
             key={category.id}
           >
             {category.name}
@@ -68,7 +76,7 @@ export default function AvailableSubsPage() {
       </ul>
       <SubsList
         type="grid"
-        data={filterCovers()}
+        data={currentCovers}
         colorDescription="secondary"
         attachment="offer"
       />

@@ -75,19 +75,6 @@
   color: var(--light-success-600);
 }
 
-.allSubsPage__balanceLink {
-  width: 24px;
-  height: 24px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: transparent;
-  border: none;
-  position: absolute;
-  top: 16px;
-  right: 16px;
-}
-
 .allSubsPage__subTitle {
   color: var(--light-type-high);
   font-size: 16px;
