@@ -2,7 +2,10 @@ import styles from './styles.module.css';
 import ActionButton from '../ActionButton';
 import { useActions } from '../../hooks/actions';
 // import { formatDate } from '../../utils/formatDate';
-import { usePostNewActiveSubMutation } from '../../store/pay2u/pay2u.api';
+import {
+  usePatchAutorenewalTrueCardMutation,
+  usePostNewActiveSubMutation,
+} from '../../store/pay2u/pay2u.api';
 import spb from '../../assets/logo_sbp43x24.svg';
 import newCard from '../../assets/newCard.svg';
 import numberAboutIcon from '../../assets/NumberAboutIcon.svg';
@@ -11,22 +14,34 @@ import { useAppSelector } from '../../hooks/redux';
 import { useState } from 'react';
 import prolongation from '../../assets/aboutProlongatiion.jpg';
 
-
 type Inputs = {
   phone_number: string;
   methodOfPayment: boolean;
   rules: boolean;
 };
 
-export default function SubscriptionForm({ card }: { card: MyCardType }) {
-  const { openPopup, openSuccessPage, openFailPage, setNewSub, closeModal, setError } =
-    useActions();
+export default function SubscriptionForm({
+  card,
+  inActive,
+}: {
+  card: MyCardType;
+  inActive?: boolean;
+}) {
+  const {
+    openPopup,
+    openSuccessPage,
+    openFailPage,
+    setNewSub,
+    closeModal,
+    setError,
+  } = useActions();
   const [isApplyClicked, setIsApplyClicked] = useState(false);
 
   const user = useAppSelector((state) => state.user.currentUser);
   // const card = useAppSelector((state) => state.currentCard.currentCard);
 
-  // const [patchRenewalFalseCard] = usePatchAutorenewalFalseCardMutation();
+  const [patchRenewalTrueCard] = usePatchAutorenewalTrueCardMutation();
+  console.log(card);
 
   const [postNewSubscription] = usePostNewActiveSubMutation();
 
@@ -54,22 +69,37 @@ export default function SubscriptionForm({ card }: { card: MyCardType }) {
     // formState: { errors },
   } = useForm<Inputs>();
   const onSubmit: SubmitHandler<Inputs> = async () => {
-    await postNewSubscription({
-      id: card.id,
-      period: 'monthly',
-    })
-      .unwrap()
-      .then((res) => {
-        openSuccessPage();
-        setNewSub(res);
-        closeModal();
-        console.log(res);
+    if (!inActive) {
+      await postNewSubscription({
+        id: card.id,
+        period: 'monthly',
       })
-      .catch((error) => {
-        setError(error);
-        openFailPage();
-        closeModal();
-      });
+        .unwrap()
+        .then((res) => {
+          openSuccessPage();
+          setNewSub(res);
+          closeModal();
+        })
+        .catch((error) => {
+          setError(error);
+          openFailPage();
+          closeModal();
+        });
+    }
+    if (inActive) {
+      await patchRenewalTrueCard(card.id)
+        .unwrap()
+        .then((res) => {
+          openSuccessPage();
+          setNewSub(res);
+          closeModal();
+        })
+        .catch((error) => {
+          setError(error);
+          openFailPage();
+          closeModal();
+        });
+    }
   };
 
   return (
@@ -114,7 +144,7 @@ export default function SubscriptionForm({ card }: { card: MyCardType }) {
           )}
           {isApplyClicked && (
             <div>
-              <h2 className={styles.subccriptionForm__title}>Важно</h2>
+              <h2 className={styles.subccriptionForm__titleAttention}>Важно</h2>
               <img src={prolongation} alt="пролонгация" />
               <p className={styles.subccriptionForm__prolongationText}>
                 Чтобы подписка продлялась автоматически, вам надо привязать

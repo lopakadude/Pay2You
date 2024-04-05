@@ -1,0 +1,24 @@
+.prolongationCancel {
+}
+
+.prolongationCancel__header {
+  padding: 0;
+  margin: 24px 0 12px 0;
+  font-size: 24px;
+  line-height: 32px;
+  font-weight: 500;
+  color: var(--light-type-high);
+}
+
+.prolongationCancel__description {
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 500;
+  color: var(--light-type-medium);
+  padding: 0;
+  margin: 0 0 24px 0;
+}
+
+.prolongationCancel__buttonContainer {
+  width: 91px;
+}

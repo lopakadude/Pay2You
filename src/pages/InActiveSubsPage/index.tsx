@@ -1,10 +1,10 @@
-import Navbar from '../../components/Navbar';
 import styles from './styles.module.css';
 import SubsList from '../../components/SubsList';
 import { useState } from 'react';
 import InActiveCardInfo from '../../components/InActiveCardInfo';
 import Modal from '../../components/Modal';
 import { useAppSelector } from '../../hooks/redux';
+import BackTo from '../../components/BackTo';
 
 export default function InActiveSubsPage() {
   const [selectedInActiveCard, setSelectedInActiveCard] = useState(0);
@@ -21,7 +21,7 @@ export default function InActiveSubsPage() {
 
   return (
     <section className={styles.inActiveSubsPage}>
-      <Navbar />
+      <BackTo />
       <h1 className={styles.inActiveSubsPage__header}>Неактивные подписки</h1>
       <SubsList
         type="flex"

@@ -88,6 +88,10 @@
   margin: 0 0 12px 0;
 }
 
+.activeCardInfo__prolongationValue_false {
+  color: var(--light-error-600);
+}
+
 .activeCardInfo__prolongationDescription {
   font-size: 14px;
   line-height: 20px;

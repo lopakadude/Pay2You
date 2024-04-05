@@ -2,16 +2,20 @@ import styles from './styles.module.css';
 import sbp from '../../assets/sbp.svg';
 import ActionButton from '../ActionButton';
 import { useActions } from '../../hooks/actions';
-import { useLazyGetMyCardInfoQuery } from '../../store/pay2u/pay2u.api';
+import {
+  useLazyGetMyCardInfoQuery,
+  usePatchAutorenewalTrueCardMutation,
+} from '../../store/pay2u/pay2u.api';
 import { useAppSelector } from '../../hooks/redux';
 import { formatDate } from '../../utils/formatDate';
 import { useEffect } from 'react';
 
-export default function ActiveCardInfo({ cardId }: { cardId: number}) {
-  const { openConfirm, setCurrentCard } = useActions();
-  const [ triggerCard ] = useLazyGetMyCardInfoQuery();
+export default function ActiveCardInfo({ cardId }: { cardId: number }) {
+  const { openConfirm, setCurrentCard, closeModal, openPopup, prolongationActive } = useActions();
+  const [triggerCard] = useLazyGetMyCardInfoQuery();
   const user = useAppSelector((state) => state.user.currentUser);
   const card = useAppSelector((state) => state.currentCard.currentCard);
+    const [patchRenewalTrueCard] = usePatchAutorenewalTrueCardMutation();
   function copyText(text: string) {
     navigator.clipboard
       .writeText(text)
@@ -21,11 +25,29 @@ export default function ActiveCardInfo({ cardId }: { cardId: number}) {
 
   useEffect(() => {
     triggerCard(cardId)
-    .unwrap()
-    .then((card) => setCurrentCard(card))
+      .unwrap()
+      .then((card) => setCurrentCard(card));
   }, []);
 
-  console.log(card)
+  console.log(card);
+
+  const  submitClick = async () => {
+    if (card.autorenewal) {
+      openConfirm();
+    } else {
+            await patchRenewalTrueCard(card.id)
+              .unwrap()
+              .then(() => {
+                closeModal();
+                prolongationActive();
+                openPopup();
+              })
+              .catch(() => {
+                closeModal();
+                openPopup();
+              });
+    }
+  }
 
   return (
     <section className={styles.activeCardInfo}>
@@ -38,9 +60,11 @@ export default function ActiveCardInfo({ cardId }: { cardId: number}) {
               className={styles.activeCardInfo__logo}
             />
             <div className={styles.activeCardInfo__name}>
-              <h3 className={styles.activeCardInfo__title}>{card.name}</h3>
+              <h3 className={styles.activeCardInfo__title}>
+                {card.cover_name}
+              </h3>
               <p className={styles.activeCardInfo__description}>
-                {card.description}
+                Подписка {card.name}
               </p>
             </div>
           </div>
@@ -55,7 +79,9 @@ export default function ActiveCardInfo({ cardId }: { cardId: number}) {
             </li>
             <li className={styles.activeCardInfo__listItem}>
               <p className={styles.activeCardInfo__itemDescription}>
-                Следующее списание
+                {card.autorenewal
+                  ? 'Следующее списание'
+                  : 'Подписка активна до'}
               </p>
               <p className={styles.activeCardInfo__itemValue}>
                 {formatDate(card.end_date, '2-digit', false)}
@@ -84,7 +110,7 @@ export default function ActiveCardInfo({ cardId }: { cardId: number}) {
           </ul>
           <a
             href={card.service_link}
-            target='_blank'
+            target="_blank"
             onClick={() => {
               copyText(card.promocode);
             }}
@@ -92,19 +118,33 @@ export default function ActiveCardInfo({ cardId }: { cardId: number}) {
           >
             Скопировать промокод и перейти на сайт
           </a>
-          {card.autorenewal === false && <p>Автопродление отключено</p>}
-          <p className={styles.activeCardInfo__prolongationValue}>
-            Ежемесячное автопродление
-          </p>
+          {!card.autorenewal && (
+            <p
+              className={`${styles.activeCardInfo__prolongationValue} ${styles.activeCardInfo__prolongationValue_false}`}
+            >
+              Автопродление отключено
+            </p>
+          )}
+          {card.autorenewal && (
+            <p className={styles.activeCardInfo__prolongationValue}>
+              Ежемесячное автопродление
+            </p>
+          )}
           <p className={styles.activeCardInfo__prolongationDescription}>
             Подписка активна в вашем аккаунте Иви с телефоном, как в банке
           </p>
           <div
             onClick={() => {
-              openConfirm();
+              submitClick();
             }}
           >
-            <ActionButton title={card.autorenewal ? 'Отключить автопродление' : 'Возобновить автопродление'} />
+            <ActionButton
+              title={
+                card.autorenewal
+                  ? 'Отключить автопродление'
+                  : 'Возобновить автопродление'
+              }
+            />
           </div>
         </div>
       )}

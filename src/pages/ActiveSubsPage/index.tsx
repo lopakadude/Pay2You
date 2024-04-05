@@ -1,5 +1,4 @@
 import styles from './styles.module.css';
-import Navbar from '../../components/Navbar/index';
 import SubsList from '../../components/SubsList/index';
 import { useEffect, useState } from 'react';
 import Modal from '../../components/Modal';
@@ -10,6 +9,7 @@ import Popup from '../../components/Popup';
 import ProlongationCancel from '../../components/ProlongationCancel';
 import { useLazyGetUserQuery } from '../../store/pay2u/pay2u.api';
 import { useActions } from '../../hooks/actions';
+import BackTo from '../../components/BackTo';
 
 export default function ActiveSubsPage() {
   const [selectedActiveCard, setSelectedActiveCard] = useState(0);
@@ -40,7 +40,7 @@ export default function ActiveSubsPage() {
 
   return (
     <section className={styles.activeSubsPage}>
-      <Navbar />
+      <BackTo />
       <h1 className={styles.activeSubsPage__header}>Активные подписки</h1>
       <SubsList
         type="flex"

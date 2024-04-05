@@ -75,7 +75,7 @@ export default function SubsList({
           >
             {sub.name}
           </h2>
-          {colorSсheme !== 'none-active' && (
+          {colorSсheme !== 'none-active' && sub.autorenewal === true && (
             <p
               className={`${styles.subList__itemDescription} ${
                 colorDescription === 'primary'
@@ -88,6 +88,13 @@ export default function SubsList({
               }`}
             >
               {attachment === 'offer' ? sub.preview : sub.description}
+            </p>
+          )}
+          {colorSсheme !== 'none-active' && sub.autorenewal === false && (
+            <p
+              className={`${styles.subList__itemDescription} ${styles.subList__itemDescription_attention}`}
+            >
+              Автопродление отключено
             </p>
           )}
           {type === 'flex' && colorSсheme !== 'none-active' && (

@@ -7,7 +7,7 @@ import { usePatchAutorenewalFalseCardMutation } from '../../store/pay2u/pay2u.ap
 
 export default function Confirm() {
 
-  const { closeConfirm, closeModal, openPopup } = useActions();
+  const { closeConfirm, closeModal, openPopup, prolongationCancel } = useActions();
 
   const card = useAppSelector((state) => state.currentCard.currentCard);
 
@@ -18,6 +18,7 @@ export default function Confirm() {
       await patchRenewalFalseCard( card.id ).unwrap();
       closeModal();
       closeConfirm();
+      prolongationCancel();
       openPopup();
       console.log(card)
     } catch (error) { console.log(error)}

@@ -9,6 +9,7 @@ const initialState: CardState = {
   currentCard: {
     id: 0,
     name: '',
+    cover_name: '',
     end_date: '',
     price: 0,
     period: '',

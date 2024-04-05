@@ -12,6 +12,7 @@ import { newSubActions } from '../store/pay2u/newSub.slice';
 import { successFormActions } from '../store/pay2u/successForm.slice';
 import { failFormActions } from '../store/pay2u/failForm.slice';
 import { errorActions } from '../store/pay2u/error.slice';
+import { prolongationActions } from '../store/pay2u/prolongation.slise';
 
 const actions = {
   ...authActions,
@@ -26,6 +27,7 @@ const actions = {
   ...successFormActions,
   ...failFormActions,
   ...errorActions,
+  ...prolongationActions,
 };
 
 export const useActions = () => {

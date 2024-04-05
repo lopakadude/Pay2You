@@ -72,6 +72,10 @@
   grid-row: 2;
 }
 
+.subList__itemDescription_attention {
+  color: var(--light-error-600);
+}
+
 .subList__itemDescription_color_primary {
   color: var(--light-type-high);
 }

@@ -3,11 +3,11 @@ import greenCheck from '../../assets/check-brokenGreen60x60.svg';
 import copyIcon from '../../assets/CopyIcon.svg';
 import ActionButton from '../../components/ActionButton';
 import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
 
 export default function SuccessPage({ data }: { data: MyCardType }) {
-  console.log(data);
-
   const navigate = useNavigate();
+  const [url, setUrl] = useState('');
   function copyText(text: string) {
     navigator.clipboard
       .writeText(text)
@@ -15,12 +15,24 @@ export default function SuccessPage({ data }: { data: MyCardType }) {
       .catch(() => console.log('not ok'));
   }
 
-  function defineActivePeriod() {
-    const currentDate = new Date().toISOString().slice(0, 10);
-    return currentDate;
+  // function defineActivePeriod() {
+  //   const currentDate = new Date().toISOString().slice(0, 10);
+  //   return currentDate;
+  // }
+  const authToken = localStorage.getItem('authToken');
+  function clickReciept(id: number) {
+    fetch(`https://pay2u.ddns.net/api/v1/subscriptions/${id}/get_reciept/`, {
+      headers: {
+        'Content-Type': 'application/pdf',
+        Authorization: `Bearer ${authToken}`,
+      },
+    }).then((res) => res.blob()).then((blob) => {
+      const url = window.URL.createObjectURL(
+      new Blob([blob]),
+      );
+      setUrl(url);
+    })
   }
-
-  console.log(defineActivePeriod());
 
   return (
     <section className={styles.successPage}>
@@ -65,7 +77,14 @@ export default function SuccessPage({ data }: { data: MyCardType }) {
           Скопировать и перейти на сайт
         </p>
       </a>
-      <button>Скачать чек</button>
+      <a
+        className={styles.successPage__downloadReciept}
+        onClick={() => clickReciept(data.id)}
+        href={url}
+        download={"reciept.pdf"}
+      >
+        Скачать чек
+      </a>
       <div
         className={styles.successPage__actionButton}
         onClick={() => navigate('/active-subs')}

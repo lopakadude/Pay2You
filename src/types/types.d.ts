@@ -1,6 +1,7 @@
 type MyCardType = {
   id: number;
   name: string;
+  cover_name: string;
   end_date: string;
   price: number;
   period: string;

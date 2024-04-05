@@ -4,7 +4,7 @@ import ActionButton from '../../components/ActionButton';
 import { useNavigate } from 'react-router-dom';
 import { useActions } from '../../hooks/actions';
 
-export default function SuccessPage({
+export default function FailPage({
   data,
 }: {
   data: {
@@ -18,7 +18,7 @@ export default function SuccessPage({
 
   return (
     <section className={styles.failPage}>
-      {data.data.error === 'Недостаточно средств на счете' ? (
+      {data.data.error[0] === 'Недостаточно средств на счете' && (
         <div className={styles.failPage__container}>
           <img
             src={alert}
@@ -46,7 +46,18 @@ export default function SuccessPage({
             <ActionButton title="Перейти к Предложениям партнёров" />
           </div>
         </div>
-      ) : null}
+      )}
+      {data.data.error[0] === 'Вы уже подписаные на один из тарифов' && (
+        <div>
+          <p>Вы уже подписаны на один из тарифов</p>
+          <div
+            className={styles.failPage__buttonToPartner}
+            onClick={() => navigate('/all-subs', { replace: true })}
+          >
+            <ActionButton title="Перейти к Предложениям партнёров" />
+          </div>
+        </div>
+      )}
     </section>
   );
 }
