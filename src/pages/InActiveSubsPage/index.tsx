@@ -28,7 +28,7 @@ export default function InActiveSubsPage() {
         colorSсheme="none-active"
         data={defineContent()}
         setSelectedInActiveCard={setSelectedInActiveCard}
-        attachment="my"
+        attachment="myInActive"
       />
       {isModalOpen && (
         <Modal content={<InActiveCardInfo cardId={selectedInActiveCard} />} />

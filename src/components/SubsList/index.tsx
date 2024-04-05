@@ -75,21 +75,39 @@ export default function SubsList({
           >
             {sub.name}
           </h2>
-          {colorSсheme !== 'none-active' && sub.autorenewal === true && (
-            <p
-              className={`${styles.subList__itemDescription} ${
-                colorDescription === 'primary'
-                  ? `${styles.subList__itemDescription_color_primary}`
-                  : ''
-              } ${
-                colorDescription === 'secondary'
-                  ? `${styles.subList__itemDescription_color_secondary}`
-                  : ''
-              }`}
-            >
-              {attachment === 'offer' ? sub.preview : sub.description}
-            </p>
-          )}
+          {colorSсheme !== 'none-active' &&
+            sub.autorenewal === true &&
+            attachment !== 'offer' && (
+              <p
+                className={`${styles.subList__itemDescription} ${
+                  colorDescription === 'primary'
+                    ? `${styles.subList__itemDescription_color_primary}`
+                    : ''
+                } ${
+                  colorDescription === 'secondary'
+                    ? `${styles.subList__itemDescription_color_secondary}`
+                    : ''
+                }`}
+              >
+                {attachment === 'offer' ? sub.preview : sub.description}
+              </p>
+            )}
+          {colorSсheme !== 'none-active' &&
+            attachment === 'offer' && (
+              <p
+                className={`${styles.subList__itemDescription} ${
+                  colorDescription === 'primary'
+                    ? `${styles.subList__itemDescription_color_primary}`
+                    : ''
+                } ${
+                  colorDescription === 'secondary'
+                    ? `${styles.subList__itemDescription_color_secondary}`
+                    : ''
+                }`}
+              >
+                {attachment === 'offer' ? sub.preview : sub.description}
+              </p>
+            )}
           {colorSсheme !== 'none-active' && sub.autorenewal === false && (
             <p
               className={`${styles.subList__itemDescription} ${styles.subList__itemDescription_attention}`}

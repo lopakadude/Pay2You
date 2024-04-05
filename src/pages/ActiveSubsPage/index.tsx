@@ -46,7 +46,7 @@ export default function ActiveSubsPage() {
         type="flex"
         data={defineContent()}
         colorDescription="primary"
-        attachment="my"
+        attachment="myActive"
         setSelectedActiveCard={setSelectedActiveCard}
       />
       {isModalOpen && (
