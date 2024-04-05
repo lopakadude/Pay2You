@@ -8,7 +8,6 @@ on:
 jobs:
   build_frontend_and_push_to_docker_hub:
     name: Push frontend Docker image to DockerHub
-    if: github.ref_name == 'master'
     runs-on: ubuntu-latest
     steps:
       - name: Check out the repo
@@ -25,4 +24,4 @@ jobs:
         with:
           context: ./
           push: true
-          tags: ${{ secrets.DOCKER_USERNAME }}/foodgram_frontend:latest
+          tags: ${{ secrets.DOCKER_USERNAME }}/pay2u:latest
