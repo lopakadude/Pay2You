@@ -1,5 +1,5 @@
 # build env
-FROM node:21-alpine as build
+FROM node:16-alpine as build
 WORKDIR /app
 COPY package*.json ./
 RUN npm install
