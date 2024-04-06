@@ -10,18 +10,20 @@ import ProlongationCancel from '../../components/ProlongationCancel';
 import { useLazyGetUserQuery } from '../../store/pay2u/pay2u.api';
 import { useActions } from '../../hooks/actions';
 import BackTo from '../../components/BackTo';
+import Loader from '../../components/Loader';
 
 export default function ActiveSubsPage() {
   const [selectedActiveCard, setSelectedActiveCard] = useState(0);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
   const isModalOpen = useAppSelector((state) => state.modal.isModalOpened);
   const isPopupOpened = useAppSelector((state) => state.popup.isPopupOpened);
   const isConfirmOpen = useAppSelector(
     (state) => state.confirm.isConfirmOpened
   );
-    const { setCurrentUser } = useActions();
-  
+  const { setCurrentUser } = useActions();
+
   const user = useAppSelector((state) => state.user.currentUser);
-    const [triggerUser] = useLazyGetUserQuery();
+  const [triggerUser] = useLazyGetUserQuery();
   const defineContent = () => {
     if (user) {
       return user.subscriptions.filter((mySub) => mySub.is_active === true);
@@ -31,24 +33,31 @@ export default function ActiveSubsPage() {
   };
 
   useEffect(() => {
+    setIsLoading(true);
     triggerUser()
       .unwrap()
-      .then((user) => setCurrentUser(user));
+      .then((user) => setCurrentUser(user))
+      .finally(() => setIsLoading(false));
   }, []);
 
-  console.log(user)
+  console.log(user);
 
   return (
     <section className={styles.activeSubsPage}>
       <BackTo />
       <h1 className={styles.activeSubsPage__header}>Активные подписки</h1>
-      <SubsList
-        type="flex"
-        data={defineContent()}
-        colorDescription="primary"
-        attachment="myActive"
-        setSelectedActiveCard={setSelectedActiveCard}
-      />
+      {isLoading ? (
+        <Loader />
+      ) : (
+        <SubsList
+          type="flex"
+          data={defineContent()}
+          colorDescription="primary"
+          attachment="myActive"
+          setSelectedActiveCard={setSelectedActiveCard}
+        />
+      )}
+
       {isModalOpen && (
         <Modal
           content={

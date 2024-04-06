@@ -20,6 +20,7 @@ import ProlongationCancel from '../../components/ProlongationCancel';
 import FailPage from '../FailPage';
 import SuccessPage from '../SuccessPage';
 import ProlongationActive from '../../components/ProlongationActive';
+import Loader from '../../components/Loader';
 
 export default function AllSubsPage() {
   const navigate = useNavigate();
@@ -39,7 +40,9 @@ export default function AllSubsPage() {
   );
   const newSub = useAppSelector((state) => state.newSub.newSub);
   const error = useAppSelector((state) => state.error.error);
-  const prolongation = useAppSelector((state) => state.prolongation.isProlongation);
+  const prolongation = useAppSelector(
+    (state) => state.prolongation.isProlongation
+  );
   const isSuccesFormSubmitted = useAppSelector(
     (state) => state.successForm.isSuccessFormSubmitted
   );
@@ -51,31 +54,35 @@ export default function AllSubsPage() {
   const [selectedInActiveCard, setSelectedInActiveCard] = useState(0);
   const [isOnboardingOpen, setIsOnboardingOpen] = useState(false);
   const isPopupOpened = useAppSelector((state) => state.popup.isPopupOpened);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
 
   useEffect(() => {
+    setIsLoading(true);
     triggerUser()
       .unwrap()
-      .then((user) => setCurrentUser(user));
+      .then((user) => setCurrentUser(user))
+      .finally(() => setIsLoading(false));
+    setIsLoading(true);
     triggerCovers()
       .unwrap()
-      .then((covers) => setCovers(covers.results));
-          if (isFailFormSubmitted) {
-            closeFailPage();
-          }
-          if (isSuccesFormSubmitted) {
-            closeSuccessPage();
-          }
+      .then((covers) => setCovers(covers.results))
+      .finally(() => setIsLoading(false));
+    if (isFailFormSubmitted) {
+      closeFailPage();
+    }
+    if (isSuccesFormSubmitted) {
+      closeSuccessPage();
+    }
   }, []);
-
-  console.log(user);
 
   return (
     <section className={styles.allSubsPage}>
       {!isOnboardingOpen &&
         user &&
+        !isLoading &&
         !isFailFormSubmitted &&
         !isSuccesFormSubmitted && (
-          <div>
+          <div className={styles.allSubsPage__container}>
             <Navbar />
             <div className={styles.allSubsPage__header}>
               <h1 className={styles.allSubsPage__title}>
@@ -197,10 +204,15 @@ export default function AllSubsPage() {
                   />
                 )
               : null}
-            {isPopupOpened  && !prolongation && <Popup content={<ProlongationCancel />} />}
-            {isPopupOpened && prolongation && <Popup content={<ProlongationActive />} />}
+            {isPopupOpened && !prolongation && (
+              <Popup content={<ProlongationCancel />} />
+            )}
+            {isPopupOpened && prolongation && (
+              <Popup content={<ProlongationActive />} />
+            )}
           </div>
         )}
+      {isLoading && <Loader />}
       {isOnboardingOpen && !isFailFormSubmitted && !isSuccesFormSubmitted && (
         <OnBoardingPage setIsOnboardingOpen={setIsOnboardingOpen} />
       )}

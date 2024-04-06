@@ -1,6 +1,9 @@
 .activeSubsPage {
   width: 375px;
   position: relative;
+  display: flex;
+  flex-direction: column;
+  min-height: calc(100vh - 36px - 34px);
 }
 
 .activeSubsPage__header {

@@ -1,6 +1,8 @@
 .inActiveSubsPage {
   width: 375px;
   position: relative;
+  display: flex;
+  flex-direction: column;
 }
 
 .inActiveSubsPage__header {

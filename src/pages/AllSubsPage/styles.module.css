@@ -1,5 +1,9 @@
 .allSubsPage {
   width: 375px;
+  min-height: calc(100vh - 36px - 34px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .allSubsPage__header {
