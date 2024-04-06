@@ -12,7 +12,7 @@
 }
 
 .notFound__main {
-  height: calc(100vh - 36px);
+  height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
