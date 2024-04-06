@@ -1,8 +1,0 @@
-.navbar {
-  display: flex;
-  margin-bottom: 12px;
-  position: fixed;
-  top: 0;
-  width: 375px;
-  z-index: 3;
-}

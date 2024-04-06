@@ -53,6 +53,11 @@ export const api = createApi({
         url: `v1/covers/?categories=${category}`,
       }),
     }),
+    getCoversByName: build.query<{ results: MyCardType[] }, string>({
+      query: (name) => ({
+        url: `v1/covers/?name=${name}`,
+      }),
+    }),
     getCategories: build.query<{ id: number; name: string }[], void>({
       query: () => ({
         url: 'v1/categories/',
@@ -104,5 +109,6 @@ export const {
   usePatchAutorenewalTrueCardMutation,
   usePostNewActiveSubMutation,
   useGetCategoriesQuery,
-  useLazyGetCoversByCategoryQuery
+  useLazyGetCoversByCategoryQuery,
+  useLazyGetCoversByNameQuery,
 } = api;

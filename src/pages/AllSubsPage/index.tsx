@@ -1,4 +1,3 @@
-import Navbar from '../../components/Navbar';
 import styles from './styles.module.css';
 import ActionButton from '../../components/ActionButton/index';
 import { useNavigate } from 'react-router-dom';
@@ -21,6 +20,7 @@ import FailPage from '../FailPage';
 import SuccessPage from '../SuccessPage';
 import ProlongationActive from '../../components/ProlongationActive';
 import Loader from '../../components/Loader';
+import BackTo from '../../components/BackTo';
 
 export default function AllSubsPage() {
   const navigate = useNavigate();
@@ -29,10 +29,10 @@ export default function AllSubsPage() {
   const { setCurrentUser, closeSuccessPage, closeFailPage, setCovers } =
     useActions();
   const activeSubs = user?.subscriptions.filter(
-    (mySub) => mySub.is_active === true
+    (mySub: MyCardType) => mySub.is_active === true
   );
   const inActiveSubs = user?.subscriptions.filter(
-    (mySub) => mySub.is_active === false
+    (mySub: MyCardType) => mySub.is_active === false
   );
   const isModalOpen = useAppSelector((state) => state.modal.isModalOpened);
   const isConfirmOpen = useAppSelector(
@@ -60,7 +60,7 @@ export default function AllSubsPage() {
     setIsLoading(true);
     triggerUser()
       .unwrap()
-      .then((user) => setCurrentUser(user))
+      .then((user: UserType) => setCurrentUser(user))
       .finally(() => setIsLoading(false));
     setIsLoading(true);
     triggerCovers()
@@ -83,7 +83,7 @@ export default function AllSubsPage() {
         !isFailFormSubmitted &&
         !isSuccesFormSubmitted && (
           <div className={styles.allSubsPage__container}>
-            <Navbar />
+            <BackTo />
             <div className={styles.allSubsPage__header}>
               <h1 className={styles.allSubsPage__title}>
                 Предложения партнёров
