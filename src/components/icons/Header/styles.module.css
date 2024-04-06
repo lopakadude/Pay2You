@@ -1,7 +1,0 @@
-.header {
-  background-color: var(--light-neutrals-200);
-  position: fixed;
-  top: 0;
-  width: 375px;
-  z-index: 3;
-}

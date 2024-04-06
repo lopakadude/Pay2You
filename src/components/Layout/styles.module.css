@@ -7,8 +7,7 @@
 }
 
 .layout__main {
-  min-height: calc(100vh - 36px - 34px);
-  margin-top: 36px;
+  min-height: 100vh;
   box-sizing: border-box;
   position: relative;
   width: var(--max-desktop-width);

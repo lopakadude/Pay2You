@@ -3,7 +3,7 @@
   position: relative;
   display: flex;
   flex-direction: column;
-  min-height: calc(100vh - 36px - 34px);
+  min-height: 100vh;
 }
 
 .activeSubsPage__header {
