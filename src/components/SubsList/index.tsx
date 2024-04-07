@@ -148,7 +148,7 @@ export default function SubsList({
           {type === 'grid' && (
             <div className={styles.subList__itemCAshBackContainer}>
               <p className={styles.subList__itemCashBack}>
-                Кешбэк {sub.cashback_percent}%
+                Кешбэк {Math.trunc(sub.cashback_percent)}%
               </p>
             </div>
           )}

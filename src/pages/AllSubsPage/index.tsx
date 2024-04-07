@@ -111,7 +111,7 @@ export default function AllSubsPage() {
                 </p>
                 <span className={styles.allSubsPage__cashbackValue}>
                   {' '}
-                  {user.cashback || 0} &#8381;
+                  {Math.trunc(user.cashback) || 0} &#8381;
                 </span>
               </li>
             </ul>

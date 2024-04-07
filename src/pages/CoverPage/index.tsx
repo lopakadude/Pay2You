@@ -247,8 +247,8 @@ export default function CoverPage() {
             )}
           </div>
         )}
-      {isModalOpen && selectedCoverCard && (
-        <Modal content={<SubscriptionForm card={selectedCoverCard} />} />
+      {isModalOpen && selectedCoverCard && currentCover && (
+        <Modal content={<SubscriptionForm card={selectedCoverCard} logolink={currentCover.logo_link} />} />
       )}
       {isPopupOpened && currentCover && (
         <Popup content={contentPopup(currentCover)} />

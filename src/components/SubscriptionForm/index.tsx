@@ -16,16 +16,18 @@ import prolongation from '../../assets/aboutProlongatiion.jpg';
 
 type Inputs = {
   phone_number: string;
-  methodOfPayment: boolean;
+  methodOfPayment: string;
   rules: boolean;
 };
 
 export default function SubscriptionForm({
   card,
   inActive,
+  logolink,
 }: {
   card: MyCardType;
   inActive?: boolean;
+  logolink?: string;
 }) {
   const {
     openPopup,
@@ -38,41 +40,23 @@ export default function SubscriptionForm({
   const [isApplyClicked, setIsApplyClicked] = useState(false);
 
   const user = useAppSelector((state) => state.user.currentUser);
-  // const card = useAppSelector((state) => state.currentCard.currentCard);
 
   const [patchRenewalTrueCard] = usePatchAutorenewalTrueCardMutation();
   console.log(card);
 
   const [postNewSubscription] = usePostNewActiveSubMutation();
 
-  const handleApplyClick = async () => {
-    await setIsApplyClicked(true);
-  };
-
-  // async function confirm() {
-  //   try {
-  //     await patchRenewalFalseCard( card.id ).unwrap();
-  //     closeModal();
-  //     closeConfirm();
-  //     openPopup();
-  //   } catch (error) { console.log(error)}
-  // }
-
-  // function cancel() {
-  //   console.log('cancel');
-  //   closeConfirm();
-  // }
-
   const {
     register,
     handleSubmit,
-    // formState: { errors },
+    formState: { errors },
   } = useForm<Inputs>();
   const onSubmit: SubmitHandler<Inputs> = async () => {
     if (!inActive) {
       await postNewSubscription({
         id: card.id,
         period: 'monthly',
+        // phone_number: data.phone_number,
       })
         .unwrap()
         .then((res) => {
@@ -102,6 +86,12 @@ export default function SubscriptionForm({
     }
   };
 
+  const onApplyClick: SubmitHandler<Inputs> = async () => {
+    await setIsApplyClicked(true);
+  };
+
+  console.log(errors.phone_number);
+
   return (
     <section className={styles.subccriptionForm}>
       {card && (
@@ -110,7 +100,7 @@ export default function SubscriptionForm({
             <div>
               <div className={styles.subccriptionForm__header}>
                 <img
-                  src={`https://pay2u.ddns.net/${card.logo_link}`}
+                  src={`https://pay2u.ddns.net/${logolink}`}
                   alt={card.name}
                   className={styles.subccriptionForm__serviceLogo}
                 />
@@ -152,39 +142,51 @@ export default function SubscriptionForm({
               </p>
             </div>
           )}
-          <form onSubmit={handleSubmit(onSubmit)}>
+          <form
+            onSubmit={
+              isApplyClicked
+                ? handleSubmit(onSubmit)
+                : handleSubmit(onApplyClick)
+            }
+            noValidate
+          >
             {!isApplyClicked && (
-              <div>
+              <div className={styles.subscriptionForm__inputNumberContainer}>
                 <input
                   type="tel"
-                  placeholder="+ 7 (900) 999-99-99"
-                  className={styles.subscriptionForm__inputNumber}
+                  placeholder="89009999999"
+                  className={`${styles.subscriptionForm__inputNumber} ${
+                    errors.phone_number
+                      ? styles.subscriptionForm__inputNumberIsError
+                      : ''
+                  }`}
                   defaultValue={user.phone_number}
                   {...register('phone_number', {
                     required: true,
-                    // pattern: 7\([0-9]{3}\)[0-9]{3}-[0-9]{2}-[0-9]{2},
+                    pattern: {
+                      value: /^(\+7|8)(\(?\d{3}\)?)?[\d\- ]{10}$/i,
+                      message: 'Неверный формат телефона',
+                    },
                   })}
                 />
+                {errors.phone_number &&
+                  errors.phone_number.type === 'pattern' && (
+                    <span className={styles.subscriptionForm__inputNumberError}>
+                      Неверный формат телефона
+                    </span>
+                  )}
+                {errors.phone_number &&
+                  errors.phone_number.type === 'required' && (
+                    <span className={styles.subscriptionForm__inputNumberError}>
+                      Введите номер телефона
+                    </span>
+                  )}
                 <p
                   className={`${styles.subscriptionForm__paymentMethod} ${styles.subscriptionForm__secondaryText}`}
                 >
                   Способ оплаты
                 </p>
                 <div className={styles.subscriptionForm__inputsContainer}>
-                  <div className={styles.subscriptionForm__inputContainer}>
-                    <input
-                      id="spb"
-                      type="radio"
-                      className={styles.subscriptionForm__input}
-                      {...register('methodOfPayment', { required: true })}
-                    />
-                    <label
-                      htmlFor="spb"
-                      className={styles.subscriptionForm__label}
-                    >
-                      <img src={spb} alt="спб" />
-                    </label>
-                  </div>
                   <div className={styles.subscriptionForm__inputContainer}>
                     <input
                       id="newCard"
@@ -198,6 +200,23 @@ export default function SubscriptionForm({
                       className={styles.subscriptionForm__label}
                     >
                       <img src={newCard} alt="новая карта" />
+                    </label>
+                  </div>
+                  <div className={styles.subscriptionForm__inputContainer}>
+                    <input
+                      id="sbp"
+                      type="radio"
+                      className={styles.subscriptionForm__input}
+                      {...register('methodOfPayment', {
+                        required: true,
+                      })}
+                      checked
+                    />
+                    <label
+                      htmlFor="sbp"
+                      className={styles.subscriptionForm__label}
+                    >
+                      <img src={spb} alt="спб" />
                     </label>
                   </div>
                 </div>
@@ -222,15 +241,17 @@ export default function SubscriptionForm({
                       </a>
                     </p>
                   </label>
+                  {errors.rules && (
+                    <span className={styles.subscriptionForm__errorRules}>
+                      Подтвердите согласие с правилами подписки
+                    </span>
+                  )}
                 </div>
               </div>
             )}
             {!isApplyClicked ? (
-              <div
-                className={styles.subscriptionForm__applyButton}
-                onClick={() => handleApplyClick()}
-              >
-                <ActionButton title="Оформить" active />
+              <div className={styles.subscriptionForm__applyButton}>
+                <ActionButton title="Оформить" active type="submit" />
               </div>
             ) : (
               <ActionButton title="Оплатить" active type="submit" />
