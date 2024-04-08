@@ -160,7 +160,7 @@ export default function SubscriptionForm({
                       ? styles.subscriptionForm__inputNumberIsError
                       : ''
                   }`}
-                  defaultValue={user.phone_number}
+                  defaultValue={`8${user.phone_number}`}
                   {...register('phone_number', {
                     required: true,
                     pattern: {
